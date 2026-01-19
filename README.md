@@ -29,7 +29,8 @@ Actualmente la empresa opera con **muchos procesos manuales**, lo que genera ine
 - Web optimizada.
 - Estructura sencilla:
   - Home
-  - 3 páginas adicionales
+  - 3 páginas adicionales: tiendas / sobre nosotros / contacto
+- Enlaces a redes sociales y ubicaciones de google maps.
 - Preparada para futuras ampliaciones.
 
 ---
@@ -97,3 +98,4 @@ Actualmente la empresa opera con **muchos procesos manuales**, lo que genera ine
 - Preparar la empresa para su crecimiento y escalabilidad.
 
 ---
+
