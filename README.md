@@ -1,101 +1,59 @@
-# Proyecto-Toscamare
+# 🏗️ Proyecto-Toscamare (Entorno de Desarrollo)
 
-## Empresa familiar de distribución de productos alimentarios
+## 🏢 Contexto del Negocio
 
----
-
-## 1. Contexto
-Empresa familiar dedicada a la **distribución de productos alimentarios**.  
-Actualmente la empresa opera con **muchos procesos manuales**, lo que genera ineficiencias.
+Empresa familiar dedicada a la **distribución de productos alimentarios**. Actualmente, la operativa depende de procesos manuales y uso intensivo de papel, lo que genera ineficiencias que este proyecto busca solventar mediante la digitalización integral.
 
 ---
 
-## 2. Problema principal
-- Procesos mayoritariamente manuales.
-- Uso intensivo de papel en pedidos, albaranes, facturas y entregas.
-- Falta de digitalización y de una base de datos centralizada.
-- Dificultad para ahorrar tiempo y escalar el negocio.
+## 🛠️ Objetivos de Digitalización
+
+### 1. Presencia Web (Prioridad 1)
+
+- **Web Corporativa:** Moderna, optimizada y escalable.
+- **Secciones:** Home, Tiendas, Sobre Nosotros y Contacto.
+- **Integraciones:** Redes sociales, Google Maps y futuro E-commerce.
+
+### 2. Gestión de Pedidos y Documentación
+
+- **Digitalización:** Sustituir el email/papel por una base de datos centralizada.
+- **Automatización OCR:** Escaneo de albaranes y facturas para conversión automática a datos (Excel/DB).
+- **Firma Digital:** Implementación de confirmación de entrega vía DNI/Digital para eliminar el papel.
+
+### 3. Logística y Almacén
+
+- **Control de Stock:** Sistema de gestión mediante escaneo de códigos QR o barras.
+- **Trazabilidad:** Seguimiento de movimientos de mercancía en tiempo real.
 
 ---
 
-## 3. Retos detectados
+## 🚀 Guía de Desarrollo (Rama `dev`)
 
-### 3.1 Página web (lo más importante)
-**Reto:** Actualizar y modernizar la web actual.
+### 📂 Estructura de Archivos Clave
 
-**Objetivos:**
-- Web **corporativa e informativa**.
-- Posible integración de **e-commerce** en un futuro.
-- Web optimizada.
-- Estructura sencilla:
-  - Home
-  - 3 páginas adicionales: tiendas / sobre nosotros / contacto
-- Enlaces a redes sociales y ubicaciones de google maps.
-- Preparada para futuras ampliaciones.
+- **Assets:** Los logos de proveedores y marcas deben alojarse en `/public/logos/` para facilitar su acceso mediante rutas absolutas (ej. `/logos/elpozo.png`).
+- **Componentes:** Desarrollar de forma modular (ej. `LogoLoop.jsx`).
 
----
+### 🌿 Flujo de Trabajo (Git)
 
-### 3.2 Gestión de pedidos
-**Situación actual:**
-- Pedidos recibidos principalmente por **email**.
-- Gestión manual sin almacenamiento estructurado.
+1.  **Main:** Solo código de producción 100% estable.
+2.  **Dev:** Rama de integración (esta rama).
+3.  **Features:** Crear ramas tipo `feature/nombre-de-la-mejora` para cada nueva funcionalidad antes de unirla a `dev`.
 
-**Necesidades:**
-- Digitalizar la recepción de pedidos.
-- Guardar automáticamente los pedidos en una **base de datos**.
-- Facilitar la consulta, gestión y análisis de pedidos.
+### 🛠️ Comandos Rápidos
+
+- `npm install` - Instalar dependencias.
+- `npm run dev` - Arrancar servidor local.
 
 ---
 
-### 3.3 Albaranes y facturación en papel
-**Problema:**
-- Recepción de gran volumen de documentación en papel.
-- Ejemplo habitual:
-  - Taco de 50 hojas.
-  - Cada hoja representa un producto con:
-    - Código
-    - Cantidad
-    - Precio
+## 📈 Estado del Proyecto
 
-**Reto:**
-- Escanear la documentación.
-- Convertirla automáticamente a formato digital.
-- Volcar los datos a **Excel o base de datos** (OCR y automatización).
+- [x] Definición de retos y objetivos.
+- [x] Configuración inicial de React + Vite.
+- [x] Estructura de carpetas y assets.
+- [ ] Desarrollo de la Landing Page.
 
 ---
 
-### 3.4 Firma de entregas
-**Situación actual:**
-- Confirmación de entregas mediante firma en papel.
-
-**Objetivo:**
-- Implementar un **sistema de firma digital**:
-  - Firma mediante **DNI** u otro identificador.
-  - Subida automática del albarán firmado al **servidor**.
-  - Eliminación del papel en el proceso de entrega.
-
----
-
-### 3.5 Logística y almacén
-**Problema:**
-- Muchos procesos manuales en el almacén.
-- Poco control de entradas y salidas de mercancía.
-
-**Solución deseada:**
-- Sistema o app de gestión de almacén:
-  - Escaneo de **QR o códigos de barras**.
-  - Registro automático de movimientos de stock.
-  - Información centralizada en una base de datos.
-  - Seguimiento en tiempo real.
-
----
-
-## 4. Objetivo global
-- Digitalizar los procesos clave del negocio.
-- Reducir tareas manuales y errores.
-- Ahorrar tiempo y costes operativos.
-- Mejorar la trazabilidad y el control.
-- Preparar la empresa para su crecimiento y escalabilidad.
-
----
-
+© 2026 Toscamare - Digitalización y Crecimiento.
