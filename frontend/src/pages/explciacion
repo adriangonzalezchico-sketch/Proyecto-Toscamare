@@ -1,3 +1,0 @@
-Aquí van las páginas como el home, contacto, tiendas y eso donde tu escribiras el html y ts que necesites para la pagina y las importaciones necesariasy siempre hay que exportar para luego poder importarlo en App.tsx
-
-Importante para crear la pagina se crearia una carpeta con el nombre d ela pagina y luego dentro de esa carpta se crea el tsx y el css si se necesita es para tenerlo mas organizado.    Ejemplo: creas la carpte Home y dentro el Home.tsx y el Home.css

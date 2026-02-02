@@ -19,5 +19,10 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Desactivar la regla de prop-types para componentes React. 
+      // Elimina advertencias sobre la falta de validación de tipos en las props.
+      "react/prop-types": "off" 
+    },
   },
 ])
