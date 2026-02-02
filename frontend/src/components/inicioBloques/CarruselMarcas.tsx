@@ -3,47 +3,47 @@ import LogoLoop from "../ui/LogoLoop/LogoLoop";
 const CarruselMarcas = () => {
   const imageLogos = [
     {
-      src: "/logosColaboradores/elpozo.png",
+      src: "./logosColaboradores/elpozo.png",
       alt: "El Pozo",
       href: "https://www.elpozo.com/",
     },
     {
-      src: "/logosColaboradores/famadesa.png",
+      src: "./logosColaboradores/famadesa.png",
       alt: "Famadesa",
       href: "https://famadesa.es/",
     },
     {
-      src: "/logosColaboradores/audens.png",
+      src: "./logosColaboradores/audens.png",
       alt: "Audens Foods",
       href: "https://www.audensfood.com/",
     },
     {
-      src: "/logosColaboradores/eurofrits.png",
+      src: "./logosColaboradores/eurofrits.png",
       alt: "Eurofrits",
       href: "https://www.eurofrits.com/",
     },
     {
-      src: "/logosColaboradores/simons.png",
+      src: "./logosColaboradores/simons.png",
       alt: "Simon’s",
       href: "https://simonsfood.net/",
     },
     {
-      src: "/logosColaboradores/laniñadelsur.png",
+      src: "./logosColaboradores/laniñadelsur.png",
       alt: "La Niña del Sur",
       href: "https://laninadelsur.com/",
     },
     {
-      src: "/logosColaboradores/elguijo.png",
+      src: "./logosColaboradores/elguijo.png",
       alt: "El Guijo",
       href: "https://www.dulcesguijo.com/",
     },
     {
-      src: "/logosColaboradores/navarra.png",
+      src: "./logosColaboradores/navarra.png",
       alt: "Congelados Navarra",
       href: "https://www.congeladosnavarra.com/es",
     },
     {
-      src: "/logosColaboradores/mccain.png",
+      src: "./logosColaboradores/mccain.png",
       alt: "McCain",
       href: "https://mccain.es/",
     },
