@@ -80,7 +80,7 @@ function TiendasIntroduccion() {
           </div>
         </div>
         <motion.a 
-          href="#contacto" 
+          href="/contacto" 
           className="intro-help"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}

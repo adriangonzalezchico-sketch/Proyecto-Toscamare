@@ -1,7 +1,8 @@
 import "./Header.css";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "/logoToscamare/logo-simple-sin-fondo.png";
+import { useState } from "react";
 
 
 /* Definición de las props que recibe el componente Header */
@@ -18,6 +19,15 @@ interface HeaderProps {
 Componente Header que recibe un objeto de enlaces como props y renderiza el encabezado del sitio web.
 */
 function Header({ links }: HeaderProps) {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
 
     return (
         <header className="header-menu">
@@ -25,26 +35,30 @@ function Header({ links }: HeaderProps) {
               <img src={logo} alt="Toscamare logo" />
             </div>
 
-            <div className="header-nav">
+            <button className="hamburger-menu" onClick={toggleMenu}>
+                {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+
+            <div className={`header-nav ${menuOpen ? "active" : ""}`}>
         <nav>
           <ul className="header-nav-list">
             <li>
-              <Link className="link" to={links.inicio}>
+              <Link className="link" to={links.inicio} onClick={closeMenu}>
                 Inicio
               </Link>
-            </li>{" "}
+            </li>
             <li>
-              <Link className="link" to={links.sobreNosotros}>
+              <Link className="link" to={links.sobreNosotros} onClick={closeMenu}>
                 Sobre Nosotros
               </Link>
-            </li>{" "}
+            </li>
             <li>
-              <Link className="link" to={links.tiendas}>
+              <Link className="link" to={links.tiendas} onClick={closeMenu}>
                 Tiendas
               </Link>
-            </li>{" "}
+            </li>
             <li>
-              <Link className="link" to={links.contacto}>
+              <Link className="link" to={links.contacto} onClick={closeMenu}>
                 Contacto
               </Link>
             </li>

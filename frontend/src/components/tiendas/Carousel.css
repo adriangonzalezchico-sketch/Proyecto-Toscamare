@@ -53,7 +53,12 @@
 
   /* Hide arrows on mobile/touch devices */
   .carousel-arrow {
-    display: none;
+    display: none !important;
+  }
+
+  .carousel-arrow-left,
+  .carousel-arrow-right {
+    display: none !important;
   }
 
   .carousel-progress-bar-bg {
