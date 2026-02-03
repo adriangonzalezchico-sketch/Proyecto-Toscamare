@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ScrollToTop from "./hooks/ScrollToTop";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,10 +16,6 @@ import Tiendas from "./pages/tiendas/Tiendas";
 import Contacto from "./pages/Contacto";
 
 function App() {
-  if ("scrollRestoration" in history) {
-    // eslint-disable-next-line react-hooks/immutability
-    history.scrollRestoration = "manual";
-  }
   useEffect(() => {
     AOS.init({
       duration: 300,
@@ -43,15 +40,13 @@ function App() {
     cookies: "/cookies",
   };
 
-
   return (
     <>
       <BrowserRouter>
         <Header links={linksHeader} />
-
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Inicio />} />
-
           <Route path="/tiendas" element={<Tiendas />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
