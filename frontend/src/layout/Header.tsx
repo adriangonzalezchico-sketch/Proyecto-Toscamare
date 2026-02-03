@@ -1,80 +1,107 @@
 import "./Header.css";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // Cambiamos Link por NavLink
 import logo from "/logoToscamare/logo-simple-sin-fondo.png";
 import { useState } from "react";
 
-
-/* Definición de las props que recibe el componente Header */
 interface HeaderProps {
-    links: {
-        inicio: string;
-        sobreNosotros: string;
-        tiendas: string;
-        contacto: string;
-    };
+  links: {
+    inicio: string;
+    sobreNosotros: string;
+    tiendas: string;
+    contacto: string;
+  };
 }
 
-/*
-Componente Header que recibe un objeto de enlaces como props y renderiza el encabezado del sitio web.
-*/
 function Header({ links }: HeaderProps) {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
 
-    const closeMenu = () => {
-        setMenuOpen(false);
-    };
+  // Función para el logo: va al inicio y refresca si ya estás ahí
+  const handleLogoClick = () => {
+    if (window.location.pathname === "/") {
+      window.location.reload(); // Recarga física si ya estás en inicio
+    } else {
+      navigate("/"); // Navega al inicio si estás en otra parte
+    }
+  };
 
-    return (
-        <header className="header-menu">
-            <div className="header-logo">
-              <img src={logo} alt="Toscamare logo" />
-            </div>
+  return (
+    <header className="header-menu">
+      <div
+        className="header-logo"
+        onClick={handleLogoClick}
+        style={{ cursor: "pointer" }}
+      >
+        <img src={logo} alt="Toscamare logo" />
+      </div>
 
-            <button className="hamburger-menu" onClick={toggleMenu}>
-                {menuOpen ? <FaTimes /> : <FaBars />}
-            </button>
+      <button className="hamburger-menu" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
 
-            <div className={`header-nav ${menuOpen ? "active" : ""}`}>
+      <div className={`header-nav ${menuOpen ? "active" : ""}`}>
         <nav>
           <ul className="header-nav-list">
             <li>
-              <Link className="link" to={links.inicio} onClick={closeMenu}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
+                to={links.inicio}
+                onClick={closeMenu}
+              >
                 Inicio
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="link" to={links.sobreNosotros} onClick={closeMenu}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
+                to={links.sobreNosotros}
+                onClick={closeMenu}
+              >
                 Sobre Nosotros
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="link" to={links.tiendas} onClick={closeMenu}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
+                to={links.tiendas}
+                onClick={closeMenu}
+              >
                 Tiendas
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link className="link" to={links.contacto} onClick={closeMenu}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
+                to={links.contacto}
+                onClick={closeMenu}
+              >
                 Contacto
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
       </div>
 
-            <div className="header-shop">
-                <button className="shop-button" onClick={() => {}}>
-                    PRÓXIMAMENTE
-                    <FaShoppingCart />
-                </button>
-            </div>
-            
-        </header>
-    );
+      <div className="header-shop">
+        <button className="shop-button">
+          PRÓXIMAMENTE
+          <FaShoppingCart />
+        </button>
+      </div>
+    </header>
+  );
 }
 
-export default Header
+export default Header;
