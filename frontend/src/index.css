@@ -139,3 +139,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-aos],
+.framer-motion-div,
+header,
+section {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}

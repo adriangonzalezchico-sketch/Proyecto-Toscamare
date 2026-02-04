@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 82px;
   z-index: 100;
   background-color: #f2f2f2;
   display: flex;
@@ -27,7 +27,7 @@
 
 .header-logo {
   display: flex;
-  height: 80px;
+  height: 43px;
   width: auto;
 }
 
@@ -36,6 +36,8 @@
   justify-content: space-around;
   flex: 1;
   margin: 0 20px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .header-shop {
@@ -139,13 +141,12 @@
 /* Tablets */
 @media (max-width: 1024px) {
   .header-menu {
-    height: auto;
     padding: 10px 15px;
     flex-wrap: wrap;
   }
 
   .header-logo {
-    height: 60px;
+    height: 40px;
   }
 
   .header-nav {
@@ -175,7 +176,8 @@
   }
 
   .header-logo {
-    height: 50px;
+    height: 40px;
+    margin: 10px 0;
     width: auto;
     flex: 0 0 auto;
     align-items: center;
@@ -250,7 +252,8 @@
   }
 
   .header-logo {
-    height: 45px;
+    height: 32px;
+    margin: 10px 0;
     width: auto;
     flex: 0 0 auto;
     align-items: center;

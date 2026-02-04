@@ -1,7 +1,7 @@
 import "./Header.css";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom"; // Cambiamos Link por NavLink
-import logo from "/logoToscamare/logo-simple-sin-fondo.png";
+import logo from "/logoToscamare/logo-simple-sin-fondo-ajustado.png";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -20,12 +20,11 @@ function Header({ links }: HeaderProps) {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  // Función para el logo: va al inicio y refresca si ya estás ahí
   const handleLogoClick = () => {
     if (window.location.pathname === "/") {
-      window.location.reload(); // Recarga física si ya estás en inicio
+      window.location.reload();
     } else {
-      navigate("/"); // Navega al inicio si estás en otra parte
+      navigate("/");
     }
   };
 

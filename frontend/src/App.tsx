@@ -19,9 +19,11 @@ import SobreNosotros from "./pages/sobreNosotros/SobreNosotros";
 function App() {
   useEffect(() => {
     AOS.init({
-      duration: 300,
-      once: false,
-      offset: 100,
+      duration: 800, // Duración elegante
+      once: true, //Solo anima una vez
+      offset: 100, // Empieza 100px antes de llegar al elemento
+      easing: "ease-in-out", // Curva de suavizado fluida
+      disableMutationObserver: false, // Ayuda a que AOS no se pierda en SPAs de React
     });
   }, []);
 
