@@ -9,21 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Send, CheckCircle } from "lucide-react"
 
-/**
- * CONFIGURACIÓN DE WEB3FORMS (GRATIS)
- * 
- * 1. Ve a https://web3forms.com/ y haz clic en "Create your Access Key"
- * 2. Ingresa el email donde quieres recibir los mensajes del formulario
- * 3. Recibirás tu Access Key por email
- * 4. Reemplaza "TU_ACCESS_KEY_AQUI" abajo con tu clave
- * 
- * Características:
- * - Gratis e ilimitado
- * - Sin registro de tarjeta
- * - Protección anti-spam incluida
- * - Los mensajes llegan directamente a tu email
- */
-const WEB3FORMS_ACCESS_KEY = "TU_ACCESS_KEY_AQUI"
+// URL de tu backend (ajusta según tu configuración)
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -55,25 +42,23 @@ export default function ContactForm() {
       return
     }
     
-    // Añadir la access key de Web3Forms
-    formData.append("access_key", WEB3FORMS_ACCESS_KEY)
-    
-    // PROTECCIÓN ANTI-BOT 3: Activar botcheck de Web3Forms
-    formData.append("botcheck", "true")
-    
-    // Configurar el asunto del email
-    const subject = formData.get("subject")
-    formData.append("subject", `Nuevo mensaje de contacto: ${subject}`)
-    
-    // Nombre completo para el email
-    const firstName = formData.get("firstName")
-    const lastName = formData.get("lastName")
-    formData.append("from_name", `${firstName} ${lastName}`)
+    // Preparar los datos para enviar
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+      formLoadTime: formLoadTime, // Enviar el tiempo de carga para validación en backend
+    }
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
 
       const result = await response.json()
@@ -83,6 +68,10 @@ export default function ContactForm() {
       }
 
       setIsSubmitted(true)
+      
+      // Resetear el formulario
+      e.currentTarget.reset()
+      
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error al enviar el mensaje")
     } finally {
