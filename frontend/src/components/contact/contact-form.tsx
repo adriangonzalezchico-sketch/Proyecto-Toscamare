@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Send, CheckCircle } from "lucide-react"
 
-// URL de tu backend (ajusta según tu configuración)
+// URL de tu backend
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001"
 
 export default function ContactForm() {
@@ -25,31 +25,30 @@ export default function ContactForm() {
     
     const formData = new FormData(e.currentTarget)
     
-    // PROTECCIÓN ANTI-BOT 1: Verificar honeypot (campo oculto que los bots rellenan)
+    // PROTECCIÓN ANTI-BOT 1: Verificar honeypot
     const honeypot = formData.get("website")
     if (honeypot) {
-      // Si el honeypot tiene valor, es un bot
       setError("Error de validación")
       setIsSubmitting(false)
       return
     }
 
-    // PROTECCIÓN ANTI-BOT 2: Verificar tiempo mínimo (los bots envían muy rápido)
+    // PROTECCIÓN ANTI-BOT 2: Verificar tiempo mínimo
     const timeElapsed = Date.now() - formLoadTime
-    if (timeElapsed < 3000) { // Menos de 3 segundos = probablemente bot
+    if (timeElapsed < 3000) {
       setError("Por favor, tómate un momento para completar el formulario")
       setIsSubmitting(false)
       return
     }
     
-    // Preparar los datos para enviar
+    // Preparar los datos para enviar al backend
     const data = {
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
       email: formData.get("email"),
       subject: formData.get("subject"),
       message: formData.get("message"),
-      formLoadTime: formLoadTime, // Enviar el tiempo de carga para validación en backend
+      formLoadTime: formLoadTime,
     }
 
     try {
