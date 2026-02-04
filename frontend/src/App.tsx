@@ -14,6 +14,7 @@ import AvisoLegal from "./pages/avisoLegal/AvisoLegal";
 import Cookies from "./pages/cookies/Cookies";
 import Tiendas from "./pages/tiendas/Tiendas";
 import Contacto from "./pages/Contacto";
+import SobreNosotros from "./pages/sobreNosotros/SobreNosotros";
 
 function App() {
   useEffect(() => {
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/tiendas" element={<Tiendas />} />
+          <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
           <Route path="/cookies" element={<Cookies />} />
