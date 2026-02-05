@@ -3,6 +3,27 @@ import { motion, useMotionValue, useTransform } from 'motion/react';
 import type { PanInfo } from 'motion/react';
 // replace icons with your own if needed
 import { FiPhone, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import sedeCentralImg from '../../assets/tiendas/SedeCentral.png';
+import cartayaImg from '../../assets/tiendas/Cartaya.jpg';
+import lepeImg from '../../assets/tiendas/Lepe.jpg';
+import islaCristinaImg from '../../assets/tiendas/IslaCristina.JPG';
+import triguerosImg from '../../assets/tiendas/Trigueros.jpg';
+import sanJuanImg from '../../assets/tiendas/SanJuan.PNG';
+import laPalmaImg from '../../assets/tiendas/LaPalma.jpg';
+import gibraleonImg from '../../assets/tiendas/Gibraleón.png';
+import ayamonte1Img from '../../assets/tiendas/Ayamonte1.png';
+import ayamonte2Img from '../../assets/tiendas/Ayamonte2.jpg';
+import huelva1Img from '../../assets/tiendas/Huelva1.jpg';
+import huelva2Img from '../../assets/tiendas/Huelva2.jpg';
+import huelva3Img from '../../assets/tiendas/Huelva3.jpg';
+import palosImg from '../../assets/tiendas/PalosdelaFrontera.png';
+import almonteImg from '../../assets/tiendas/Almonte.jpg';
+import bonaresImg from '../../assets/tiendas/Bonares.jpg';
+import bollullosImg from '../../assets/tiendas/Bollullos.png';
+import moguerImg from '../../assets/tiendas/Moguer.png';
+import rocianaImg from '../../assets/tiendas/Rociana.png';
+import sanBartolomeImg from '../../assets/tiendas/SanBartolomé.png';
+import valverdeImg from '../../assets/tiendas/Valverde.png';
 import './Carousel.css';
 
 
@@ -24,27 +45,27 @@ export interface CarouselProps {
 }
 
 const DEFAULT_ITEMS: CarouselItem[] = [
-    { id: 1, title: 'SEDE CENTRAL', telefono: '959392221', image: '/src/assets/tiendas/SedeCentral.png' },
-    { id: 2, title: 'CARTAYA', telefono: '959382221', image: '/src/assets/tiendas/Cartaya.jpg' },
-    { id: 3, title: 'LEPE', telefono: '690825691', image: '/src/assets/tiendas/Lepe.jpg' },
-    { id: 4, title: 'ISLA CRISTINA', telefono: '690825689', image: '/src/assets/tiendas/IslaCristina.JPG' },
-    { id: 5, title: 'TRIGUEROS', telefono: '690825690', image: '/src/assets/tiendas/Trigueros.jpg' },
-    { id: 6, title: 'SAN JUAN DEL PUERTO', telefono: '645752089', image: '/src/assets/tiendas/SanJuan.PNG' },
-    { id: 7, title: 'LA PALMA DEL CONDADO', telefono: '959401288', image: '/src/assets/tiendas/LaPalma.jpg' },
-    { id: 8, title: 'GIBRALEÓN', telefono: '677579534', image: '/src/assets/tiendas/Gibraleón.png' },
-    { id: 9, title: 'AYAMONTE 1', telefono: '959392221', image: '/src/assets/tiendas/Ayamonte1.png' },
-    { id: 10, title: 'AYAMONTE 2', telefono: '685431338', image: '/src/assets/tiendas/Ayamonte2.jpg' },
-    { id: 11, title: 'HUELVA 1', telefono: '626883856', image: '/src/assets/tiendas/Huelva1.jpg' },
-    { id: 12, title: 'HUELVA 2', telefono: '959392221', image: '/src/assets/tiendas/Huelva2.jpg' },
-    { id: 13, title: 'HUELVA 3', telefono: '959392221', image: '/src/assets/tiendas/Huelva3.jpg' },
-    { id: 14, title: 'PALOS DE LA FRONTERA', telefono: '959102794', image: '/src/assets/tiendas/PalosdelaFrontera.png' },
-    { id: 15, title: 'ALMONTE', telefono: '959392221', image: '/src/assets/tiendas/Almonte.jpg' },
-    { id: 16, title: 'BONARES', telefono: '605195677', image: '/src/assets/tiendas/Bonares.jpg' },
-    { id: 17, title: 'BOLLULLOS PAR DEL CONDADO', telefono: '959392221', image: '/src/assets/tiendas/Bollullos.png' },
-    { id: 18, title: 'MOGUER', telefono: '635609135', image: '/src/assets/tiendas/Moguer.png' },
-    { id: 19, title: 'ROCIANA DEL CONDADO', telefono: '645752092', image: '/src/assets/tiendas/Rociana.png' },
-    { id: 20, title: 'SAN BARTOLOMÉ DE LA TORRE', telefono: '620065629', image: '/src/assets/tiendas/SanBartolomé.png' },
-    { id: 21, title: 'VALVERDE', telefono: '959392221', image: '/src/assets/tiendas/Valverde.png' },
+    { id: 1, title: 'SEDE CENTRAL', telefono: '959392221', image: sedeCentralImg },
+    { id: 2, title: 'CARTAYA', telefono: '959382221', image: cartayaImg },
+    { id: 3, title: 'LEPE', telefono: '690825691', image: lepeImg },
+    { id: 4, title: 'ISLA CRISTINA', telefono: '690825689', image: islaCristinaImg },
+    { id: 5, title: 'TRIGUEROS', telefono: '690825690', image: triguerosImg },
+    { id: 6, title: 'SAN JUAN DEL PUERTO', telefono: '645752089', image: sanJuanImg },
+    { id: 7, title: 'LA PALMA DEL CONDADO', telefono: '959401288', image: laPalmaImg },
+    { id: 8, title: 'GIBRALEÓN', telefono: '677579534', image: gibraleonImg },
+    { id: 9, title: 'AYAMONTE 1', telefono: '959392221', image: ayamonte1Img },
+    { id: 10, title: 'AYAMONTE 2', telefono: '685431338', image: ayamonte2Img },
+    { id: 11, title: 'HUELVA 1', telefono: '626883856', image: huelva1Img },
+    { id: 12, title: 'HUELVA 2', telefono: '959392221', image: huelva2Img },
+    { id: 13, title: 'HUELVA 3', telefono: '959392221', image: huelva3Img },
+    { id: 14, title: 'PALOS DE LA FRONTERA', telefono: '959102794', image: palosImg },
+    { id: 15, title: 'ALMONTE', telefono: '959392221', image: almonteImg },
+    { id: 16, title: 'BONARES', telefono: '605195677', image: bonaresImg },
+    { id: 17, title: 'BOLLULLOS PAR DEL CONDADO', telefono: '959392221', image: bollullosImg },
+    { id: 18, title: 'MOGUER', telefono: '635609135', image: moguerImg },
+    { id: 19, title: 'ROCIANA DEL CONDADO', telefono: '645752092', image: rocianaImg },
+    { id: 20, title: 'SAN BARTOLOMÉ DE LA TORRE', telefono: '620065629', image: sanBartolomeImg },
+    { id: 21, title: 'VALVERDE', telefono: '959392221', image: valverdeImg },
 ];
 
 const DRAG_BUFFER = 0;
