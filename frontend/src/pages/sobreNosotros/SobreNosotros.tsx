@@ -1,4 +1,4 @@
-import Hero from "../../components/sobreNosotros/hero";
+import Hero from "../../components/sobreNosotros/Hero";
 import Trayectoria from "../../components/sobreNosotros/Trayectoria";
 import PremiosAtun from "../../components/sobreNosotros/PremiosAtun";
 import ProductosCalidad from "../../components/sobreNosotros/ProductosCalidad";
