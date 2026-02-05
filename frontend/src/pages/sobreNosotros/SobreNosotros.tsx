@@ -1,18 +1,16 @@
 import Hero from "../../components/sobreNosotros/hero";
-import NuestraEsencia from "../../components/sobreNosotros/NuestraEsencia";
-import LogisticaCompromiso from "../../components/sobreNosotros/LogisticaCompromiso";
-import ReyCasaAtun from "../../components/sobreNosotros/ReyCasaAtun";
-import Confianza from "../../components/sobreNosotros/Confianza";
+import Trayectoria from "../../components/sobreNosotros/Trayectoria";
+import PremiosAtun from "../../components/sobreNosotros/PremiosAtun";
+import ProductosCalidad from "../../components/sobreNosotros/ProductosCalidad";
 import CTA from "../../components/sobreNosotros/CTA";
 
 const SobreNosotros = () => {
   return (
     <div className="bg-white">
       <Hero />
-      <NuestraEsencia />
-      <LogisticaCompromiso />
-      <ReyCasaAtun />
-      <Confianza />
+      <Trayectoria />
+      <PremiosAtun />
+      <ProductosCalidad />
       <CTA />
     </div>
   );
