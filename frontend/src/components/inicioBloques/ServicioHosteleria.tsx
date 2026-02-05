@@ -1,5 +1,3 @@
-import React from "react";
-
 const ServicioHosteleria = () => {
   const categorias = [
     { nombre: "Pescados", icono: "🐟" },
