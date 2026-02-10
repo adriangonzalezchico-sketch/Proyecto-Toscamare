@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Teléfono",
-    content: "+34 900 123 456",
+    content: "+34 000 000 000",
     description: "Lun - Vie, 9:00 - 18:00",
   },
   {
@@ -30,13 +30,13 @@ const contactInfo = [
 
 export default function ContactInfo() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-6 sm:grid-cols-2">
       {contactInfo.map((item) => (
         <Card 
           key={item.title} 
           className="border-border/50 bg-card/50 backdrop-blur-sm transition-colors hover:bg-card"
         >
-          <CardContent className="flex items-start gap-4 p-5">
+          <CardContent className="flex flex-col items-start gap-4 p-4">
             <div className="rounded-lg bg-primary/10 p-3 shrink-0">
               <item.icon className="h-5 w-5 text-primary" />
             </div>

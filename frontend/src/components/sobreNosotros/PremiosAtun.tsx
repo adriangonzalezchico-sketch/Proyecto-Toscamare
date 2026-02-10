@@ -74,17 +74,18 @@ const LogisticaCompromiso = () => {
             data-aos-delay="400"
           >
             <div className="relative group">
-              {/* Sello de Premio (Invertido al otro lado para el zigzag) */}
-              <div className="absolute -top-10 -right-10 z-20 w-32 h-32 bg-yellow-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl border-4 border-white rotate-[12deg] group-hover:rotate-0 transition-transform duration-500">
-                <span className="text-[10px] font-bold uppercase tracking-tighter text-center">
+              {/* Sello de Premio */}
+              <div className="absolute -top-4 -right-4 md:-top-10 md:-right-10 z-20 w-24 h-24 md:w-32 md:h-32 bg-yellow-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl border-4 border-white rotate-[12deg] group-hover:rotate-0 transition-transform duration-500">
+                <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-tighter text-center leading-none">
                   Mejor Mojama
                 </span>
-                <span className="text-2xl font-black italic">PREMIO</span>
-                <span className="text-[10px] font-medium uppercase">
+                <span className="text-lg md:text-2xl font-black italic">
+                  PREMIO
+                </span>
+                <span className="text-[8px] md:text-[10px] font-medium uppercase">
                   Isla Cristina
                 </span>
               </div>
-
               <img
                 src="https://productimages.etrusted.com/products/prt-0cdc40dd-9000-4a0d-a362-db5ecddaaceb/35/original.jpg"
                 alt="Calidad reconocida Atún Toscamare"

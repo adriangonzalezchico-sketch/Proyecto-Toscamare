@@ -15,6 +15,7 @@ import Cookies from "./pages/cookies/Cookies";
 import Tiendas from "./pages/tiendas/Tiendas";
 import Contacto from "./pages/Contacto";
 import SobreNosotros from "./pages/sobreNosotros/SobreNosotros";
+import Productos from "./pages/productos/Productos";
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App() {
     contacto: "/contacto",
     avisoLegal: "/aviso-legal",
     cookies: "/cookies",
+    productos: "/productos",
   };
 
   return (
@@ -55,6 +57,15 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route
+            path="*"
+            element={
+              <h1 className="text-center mt-20 text-3xl">
+                404 - Página no encontrada
+              </h1>
+            }
+          />
         </Routes>
 
         <Footer links={linksFooter} />

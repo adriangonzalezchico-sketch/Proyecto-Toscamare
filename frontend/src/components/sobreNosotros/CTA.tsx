@@ -22,15 +22,21 @@ const CTA = () => {
               pedido de forma directa y personalizada.
             </p>
 
-            <div className="flex flex-col items-center gap-4">
-              {/* Botón de Email Directo */}
+            <div className="flex flex-col items-center gap-4 w-full px-4">
+              {/* Botón de Contacto Adaptable */}
               <a
-                href="mailto:pedidos@cialtoscamare.es"
-                className="bg-white text-blue-900 px-10 py-5 rounded-full font-bold text-xl hover:bg-blue-50 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-3"
+                href="/contacto"
+                className="bg-white text-blue-900 
+               px-8 py-4 sm:px-10 sm:py-5 
+               rounded-full font-bold 
+               text-lg sm:text-xl 
+               hover:bg-blue-50 transition-all shadow-xl 
+               hover:scale-105 active:scale-95 
+               flex items-center justify-center gap-3"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-6 w-6 shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -39,13 +45,17 @@ const CTA = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                   />
                 </svg>
-                pedidos@cialtoscamare.es
+
+                <span className="whitespace-nowrap">
+                  Contactar
+                  <span className="hidden md:inline"> con nosotros</span>
+                </span>
               </a>
 
-              <p className="text-blue-300 text-xs mt-4 uppercase tracking-[0.3em] font-semibold">
+              <p className="text-blue-300 text-[10px] sm:text-xs mt-4 uppercase tracking-[0.2em] font-semibold text-center">
                 Servicio de atención preferente
               </p>
             </div>
