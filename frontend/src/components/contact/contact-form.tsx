@@ -1,44 +1,44 @@
-'use client'
+"use client";
 
-import React, { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Send, CheckCircle } from "lucide-react"
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { CheckCircle } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [formLoadTime, setFormLoadTime] = useState(Date.now())
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formLoadTime, setFormLoadTime] = useState(Date.now());
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (isSubmitting) return
+    e.preventDefault();
+    if (isSubmitting) return;
 
-    const form = e.currentTarget
+    const form = e.currentTarget;
 
-    setIsSubmitting(true)
-    setError(null)
+    setIsSubmitting(true);
+    setError(null);
 
-    const formData = new FormData(form)
+    const formData = new FormData(form);
 
     // Anti-bot: honeypot
     if (formData.get("website")) {
-      setError("Error de validación")
-      setIsSubmitting(false)
-      return
+      setError("Error de validación");
+      setIsSubmitting(false);
+      return;
     }
 
     // Anti-bot: tiempo mínimo
-    const timeElapsed = Date.now() - formLoadTime
+    const timeElapsed = Date.now() - formLoadTime;
     if (timeElapsed < 3000) {
-      setError("Por favor, tómate un momento para completar el formulario")
-      setIsSubmitting(false)
-      return
+      setError("Por favor, tómate un momento para completar el formulario");
+      setIsSubmitting(false);
+      return;
     }
 
     const data = {
@@ -48,36 +48,37 @@ export default function ContactForm() {
       subject: formData.get("subject"),
       message: formData.get("message"),
       formLoadTime,
-    }
+    };
 
     try {
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!result.success) {
-        throw new Error(result.message || "Error al enviar el mensaje")
+        throw new Error(result.message || "Error al enviar el mensaje");
       }
 
-      setIsSubmitted(true)
-      form.reset()
-
+      setIsSubmitted(true);
+      form.reset();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Error al enviar el mensaje")
+      setError(
+        err instanceof Error ? err.message : "Error al enviar el mensaje",
+      );
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleNewMessage = () => {
-    setIsSubmitted(false)
-    setError(null)
-    setFormLoadTime(Date.now()) // 👈 reinicia anti-bot
-  }
+    setIsSubmitted(false);
+    setError(null);
+    setFormLoadTime(Date.now()); // 👈 reinicia anti-bot
+  };
 
   if (isSubmitted) {
     return (
@@ -85,21 +86,15 @@ export default function ContactForm() {
         <div className="mb-4 rounded-full bg-primary/10 p-4">
           <CheckCircle className="h-12 w-12 text-primary" />
         </div>
-        <h3 className="mb-2 text-2xl font-semibold">
-          Mensaje enviado
-        </h3>
+        <h3 className="mb-2 text-2xl font-semibold">Mensaje enviado</h3>
         <p className="text-muted-foreground">
           Gracias por contactarnos. Te responderemos pronto.
         </p>
-        <Button
-          variant="outline"
-          className="mt-6"
-          onClick={handleNewMessage}
-        >
+        <Button variant="outline" className="mt-6" onClick={handleNewMessage}>
           Enviar otro mensaje
         </Button>
       </div>
-    )
+    );
   }
 
   return (
@@ -155,5 +150,5 @@ export default function ContactForm() {
         {isSubmitting ? "Enviando..." : "Enviar mensaje"}
       </Button>
     </form>
-  )
+  );
 }
