@@ -86,7 +86,7 @@ function Header({ links }: HeaderProps) {
                 to={links.contacto}
                 onClick={closeMenu}
               >
-                Contacto
+                Ir a página de contacto
               </NavLink>
             </li>
           </ul>
