@@ -13,24 +13,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push only backend and frontend to fork
+      - name: Push only backend and frontend to fork (safe)
         env:
           FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
         run: |
-          # Clonar tu fork en otra carpeta
           git clone https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git fork-repo
-          
-          # Borrar contenido antiguo (excepto .git)
-          find fork-repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-          
-          # Copiar solo lo importante
-          cp -r backend fork-repo/
-          cp -r frontend fork-repo/
-          
           cd fork-repo
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          
-          git add .
+
+          # Copiar las carpetas desde el repo original a la carpeta del fork
+          cp -r ../backend ./backend
+          cp -r ../frontend ./frontend
+
+          # Solo añadir cambios en backend y frontend
+          git add backend frontend
           git commit -m "Sync backend and frontend from upstream" || echo "No changes"
-          git push origin main
+          git push https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git main
+
