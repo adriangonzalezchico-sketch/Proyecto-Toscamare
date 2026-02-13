@@ -8,18 +8,29 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout original repo
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-
-      - name: Push to fork
+      - name: Push only backend and frontend to fork
         env:
           FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
         run: |
-          git remote add fork https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git
-          git push fork main
+          # Clonar tu fork en otra carpeta
+          git clone https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git fork-repo
+          
+          # Borrar contenido antiguo (excepto .git)
+          find fork-repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          
+          # Copiar solo lo importante
+          cp -r backend fork-repo/
+          cp -r frontend fork-repo/
+          
+          cd fork-repo
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          
+          git add .
+          git commit -m "Sync backend and frontend from upstream" || echo "No changes"
+          git push origin main
