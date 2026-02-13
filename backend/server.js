@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import FormData from 'form-data';
+import Mailgun from 'mailgun.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,41 +14,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Log uncaught errors so Render shows the real failure
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught exception:', err?.stack || err);
+// Configurar Mailgun
+const mailgun = new Mailgun(FormData);
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY || "",
+  // Si tu dominio es EU, descomenta esta línea:
+  // url: "https://api.eu.mailgun.net"
 });
-process.on('unhandledRejection', (err) => {
-  console.error('Unhandled rejection:', err?.stack || err);
-});
-
-let mgClient = null;
-
-async function getMailgunClient() {
-  if (mgClient) {
-    return mgClient;
-  }
-
-  try {
-    const [{ default: FormData }, { default: Mailgun }] = await Promise.all([
-      import('form-data'),
-      import('mailgun.js')
-    ]);
-
-    const mailgun = new Mailgun(FormData);
-    mgClient = mailgun.client({
-      username: "api",
-      key: process.env.MAILGUN_API_KEY || "",
-      // Si tu dominio es EU, descomenta esta línea:
-      // url: "https://api.eu.mailgun.net"
-    });
-
-    return mgClient;
-  } catch (err) {
-    console.error('Mailgun init error:', err?.stack || err);
-    throw err;
-  }
-}
 
 // PROTECCIÓN ANTI-BOT
 function validateSubmission(body, startTime) {
@@ -87,7 +62,6 @@ app.post('/api/contact', async (req, res) => {
     const fromName = `${firstName} ${lastName}`;
 
     // Enviar con Mailgun
-    const mg = await getMailgunClient();
     const data = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
       from: `${process.env.COMPANY_NAME} <${process.env.MAILGUN_FROM_EMAIL}>`,
       to: [process.env.COMPANY_EMAIL],
