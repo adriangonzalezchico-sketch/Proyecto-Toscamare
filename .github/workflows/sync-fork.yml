@@ -18,6 +18,8 @@ jobs:
           git config user.name "github-actions[bot]"
 
       - name: Push to fork
+        env:
+          FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
         run: |
-          git remote add fork https://$FORK_SYNC_TOKEN@github.com/pmorenomarquez/Proyecto-Toscamare.git
+          git remote add fork https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git
           git push fork main
