@@ -1,0 +1,58 @@
+.title-container {
+    /* Fondo con gradiente azul */
+    background-image: linear-gradient(135deg, #061a66 0%, #1a4186 100%);
+    color: #fff;
+    text-align: center;
+    padding: 80px 1rem 120px 1rem;
+    /* Added horizontal padding for safety */
+    position: relative;
+    /* overflow: hidden; Removed to allow overlap */
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    /* Fluid typography */
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    /* Fluid typography */
+    margin: 0 0 2rem 0;
+    font-weight: 400;
+    padding: 0 1rem;
+    opacity: 0.9;
+}
+
+/* Onda blanca inferior */
+.title-container::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    /* Aggressive overlap */
+    height: 65px;
+    /* Taller to ensure coverage */
+    width: 100%;
+    z-index: 2;
+    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1920 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 30C320 60 640 60 960 30C1280 0 1600 0 1920 30V60H0V30Z" fill="%23F7F8FA"/></svg>') no-repeat bottom center;
+    background-size: 100% 100%;
+    /* Stretch to fit */
+    pointer-events: none;
+}
+
+/* Media Queries for specific adjustments if clamp isn't enough */
+@media (max-width: 600px) {
+    .title-container {
+        padding: 60px 1rem 80px 1rem;
+    }
+
+    .title-container::after {
+        height: 30px;
+    }
+}

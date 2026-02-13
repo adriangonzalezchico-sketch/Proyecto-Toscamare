@@ -1,0 +1,322 @@
+.header-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  z-index: 100;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.header-logo,
+.header-shop {
+  height: 100%;
+  flex: 0 0 auto;
+}
+
+.header-logo {
+  display: flex;
+  height: 43px;
+  width: auto;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+  margin: 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header-shop {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-nav-list {
+  padding: 20px;
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  list-style: none;
+  margin: 0;
+}
+
+.header-nav-list a {
+  color: #011468;
+  text-decoration: none;
+}
+
+.header-nav-list a:hover {
+  opacity: 0.7;
+}
+
+.shop-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /*evita que el texto se divida en varias líneas*/
+
+  background-color: #011468;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shop-button:hover {
+  background-color: #3f4f96;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: #011468;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* El estado activo */
+.link.active {
+  color: #007bff; /* Un azul más vibrante para resaltar */
+  font-weight: bold;
+}
+
+/* La línea que aparece debajo */
+.link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+/* La línea crece si está activo o si pasas el ratón */
+.link.active::after,
+.link:hover::after {
+  width: 100%;
+}
+
+/* Evitar que el logo se mueva al hacer hover */
+.header-logo:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Botón hamburguesa - oculto en escritorio */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #011468;
+  padding: 0;
+  margin: 0 10px;
+}
+
+/* Media Queries para responsividad */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .header-menu {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    height: 40px;
+  }
+
+  .header-nav {
+    margin: 0;
+  }
+
+  .header-nav-list {
+    padding: 10px;
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  .shop-button {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .header-menu {
+    gap: 10px;
+    padding: 8px 12px;
+    height: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    height: 40px;
+    margin: 10px 0;
+    width: auto;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  .header-logo img {
+    height: 100%;
+    width: auto;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .header-shop {
+    flex: 0 0 auto !important;
+    padding: 0 5px;
+  }
+
+  .header-nav {
+    flex: none !important;
+    margin: 0 !important;
+    width: 100%;
+    order: 3;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .header-nav.active {
+    max-height: 300px;
+    border-top: 1px solid #d0d0d0;
+  }
+
+  .header-nav-list {
+    padding: 12px 0;
+    gap: 0;
+    font-size: 13px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .header-nav-list li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .header-nav-list li:last-child {
+    border-bottom: none;
+  }
+
+  .shop-button {
+    padding: 8px 12px;
+    font-size: 10px;
+    gap: 4px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .header-menu {
+    gap: 8px;
+    padding: 8px 10px;
+    height: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    height: 32px;
+    margin: 10px 0;
+    width: auto;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  .header-logo img {
+    height: 100%;
+    width: auto;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .header-shop {
+    flex: 0 0 auto !important;
+    padding: 0 5px;
+  }
+
+  .header-nav {
+    flex: none !important;
+    margin: 0 !important;
+    width: 100%;
+    order: 3;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .header-nav.active {
+    max-height: 250px;
+    border-top: 1px solid #d0d0d0;
+  }
+
+  .header-nav-list {
+    padding: 10px 0;
+    gap: 0;
+    font-size: 12px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .header-nav-list li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .header-nav-list li:last-child {
+    border-bottom: none;
+  }
+
+  .shop-button {
+    padding: 6px 10px;
+    font-size: 9px;
+    gap: 3px;
+  }
+
+  .shop-button svg {
+    font-size: 10px;
+  }
+}

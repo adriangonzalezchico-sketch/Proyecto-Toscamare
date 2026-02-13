@@ -1,0 +1,127 @@
+.tiendas-section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background-image: linear-gradient(180deg, #F7F8FA 0%, #FFFFFF 100%);
+  box-sizing: border-box;
+}
+
+.tiendas-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-top: 2.5rem;
+  min-height: 65vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  max-width: 1200px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(30, 41, 59, 0.08), 
+              0 1px 4px 0 rgba(30, 41, 59, 0.05);
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tiendas-layout:hover {
+  box-shadow: 0 8px 48px 0 rgba(30, 41, 59, 0.12), 
+              0 2px 8px 0 rgba(30, 41, 59, 0.08);
+}
+
+.tiendas-mapa-col {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.tiendas-mapa-col > * {
+  height: 100%;
+  width: 100%;
+  border-radius: 12px; 
+  overflow: hidden;
+  min-height: 500px;
+  max-height: 70vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.tiendas-mapa-col > *:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.tiendas-lista-col {
+  flex: 1;
+  min-width: 300px; /* Reduced slightly to fit smaller desktops better */
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.tiendas-lista-col > * {
+  height: 100%;
+  min-height: 500px;
+  max-height: 70vh;
+}
+
+/* Media Queries */
+
+/* Tablet / Small Desktop */
+@media (max-width: 1100px) {
+  .tiendas-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    width: 100%; /* Full width on smaller screens */
+    margin-top: 1.5rem;
+    border-radius: 0; /* Flatten borders for seamless mobile look or keep if preferred, keeping as is for now but removing weird margins */
+    box-shadow: none; /* Simplify on mobile usually looks cleaner, or keep subtle */
+  }
+
+  .tiendas-mapa-col, 
+  .tiendas-lista-col {
+    flex: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    min-width: 0;
+  }
+
+  /* Adjust heights for stacked layout */
+  .tiendas-mapa-col > * {
+    min-height: 400px; /* Slightly smaller map on tablet */
+    max-height: 50vh;
+  }
+
+  .tiendas-lista-col > * {
+    min-height: auto; /* Let list take natural height */
+    max-height: 60vh;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .tiendas-layout {
+    padding: 1rem 0.5rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    background: transparent; /* Remove container background on mobile to blend with page */
+    box-shadow: none;
+  }
+
+  .tiendas-mapa-col > * {
+    min-height: 300px;
+    height: 300px;
+  }
+  
+  .tiendas-lista-col {
+      max-width: 100%;
+  }
+}
