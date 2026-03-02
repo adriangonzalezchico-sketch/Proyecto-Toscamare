@@ -22,8 +22,8 @@ export const tiendasUbicaciones: TiendaUbicacion[] = [
   {
     nombre: "LEPE",
     direccion: "C. Juan Santana, 7, 21440 Lepe, Huelva",
-    lat: 37.273810507090744,
-    lng: -7.200280787577575
+    lat: 37.25580502575356,
+    lng: -7.203043121911746
   },
   {
     nombre: "ISLA CRISTINA",
