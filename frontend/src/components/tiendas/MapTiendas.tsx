@@ -17,7 +17,7 @@ type Poi = { key: string, location: google.maps.LatLngLiteral };
 const locations: Poi[] = [
     { key: "sede_central", location: { lat: 37.28868607643938, lng: -7.1384407865092 } },
     { key: "cartaya", location: { lat: 37.28493412011883, lng: -7.152613799999999 } },
-    { key: "lepe", location: { lat: 37.273810507090744, lng: -7.200280787577575 } },
+    { key: "lepe", location: { lat: 37.25582210441801,  lng: -7.203037757608899 } },
     { key: "isla_cristina", location: { lat: 37.19973795284528, lng: -7.323231771163599 } },
     { key: "trigueros", location: { lat: 37.38294821380596, lng: -6.834348815345601 } },
     { key: "san_juan_del_puerto", location: { lat: 37.31420275995013, lng: -6.842108184654399 } },
