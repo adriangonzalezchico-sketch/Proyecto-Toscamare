@@ -2,28 +2,36 @@ import { Link } from "react-router-dom";
 
 const SeccionContacto = () => {
   return (
-    <section className="min-h-screen py-16 md:py-24 bg-[#F0F9FF] overflow-hidden">
-      <div className="container mx-auto px-4">
-        {/* Cabecera: Entrada elegante con fade-up */}
+    /* py-24 lg:py-32 para mantener la consistencia de espaciado con las secciones anteriores */
+    <section className="py-24 lg:py-32 bg-[#F0F9FF] overflow-hidden">
+      {/* Contenedor estándar unificado max-w-7xl mx-auto px-6 */}
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Cabecera de Sección */}
         <div
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-20"
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          <span className="text-[#D90414] font-bold tracking-[0.3em] uppercase text-xs bg-red-50 px-3 py-1 rounded-full">
-            ¿Hablamos?
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#011468] mt-4 mb-6 leading-tight">
+          {/* Badge superior con línea (Estilo unificado Toscamare) */}
+          <div className="flex justify-center items-center gap-3 mb-6">
+            <div className="h-px w-10 bg-[#D90414]"></div>
+            <span className="text-[#D90414] font-bold uppercase tracking-[0.3em] text-xs">
+              ¿Hablamos?
+            </span>
+            <div className="h-px w-10 bg-[#D90414]"></div>
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold text-[#011468] mb-8 leading-tight">
             Estamos aquí para ayudarte
           </h2>
-          <p className="text-gray-600 text-lg md:text-xl font-light">
+          <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
             Tanto si eres un particular buscando calidad para tu casa, como si
             eres un profesional de la hostelería, nuestro equipo está listo para
             atenderte.
           </p>
         </div>
 
-        {/* Grid de 3 Tarjetas: Efecto Cascada mejorado */}
+        {/* Grid de Tarjetas de Contacto */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {/* TARJETA 1: Teléfono */}
           <div
@@ -58,13 +66,13 @@ const SeccionContacto = () => {
             </a>
           </div>
 
-          {/* TARJETA 2: Email (Resaltada con sutil escala) */}
+          {/* TARJETA 2: Email (Resaltada) */}
           <div
             data-aos="zoom-in"
             data-aos-delay="300"
             className="bg-white p-10 rounded-3xl shadow-xl border-b-8 border-[#011468] relative transform md:-translate-y-6 z-10 text-center"
           >
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#011468] text-white text-xs font-black tracking-widest px-4 py-2 rounded-full shadow-lg">
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#011468] text-white text-[10px] font-black tracking-widest px-4 py-2 rounded-full shadow-lg">
               RESPUESTA RÁPIDA
             </span>
             <div className="w-20 h-20 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center mb-8">
@@ -90,7 +98,7 @@ const SeccionContacto = () => {
             </p>
             <a
               href="mailto:pedidos@cialtoscamare.es"
-              className="text-lg font-black text-[#011468] hover:text-[#D90414] break-all underline decoration-[#57C3ED] decoration-4 underline-offset-4"
+              className="text-lg font-black text-[#011468] hover:text-[#D90414] break-all underline decoration-[#57C3ED] decoration-4 underline-offset-4 transition-colors"
             >
               pedidos@cialtoscamare.es
             </a>
@@ -131,20 +139,19 @@ const SeccionContacto = () => {
           </div>
         </div>
 
-        {/* Botón Final con efecto de interacción */}
+        {/* Botón Final Redondeado */}
         <div
-          className="text-center mt-10"
+          className="text-center mt-12"
           data-aos="zoom-in"
-          data-aos-anchor-placement="top-bottom"
           data-aos-delay="700"
         >
           <Link
             to="/contacto"
-            className="inline-flex items-center justify-center px-12 py-5 bg-[#011468] text-white font-black rounded-full hover:bg-[#D90414] transition-all duration-300 shadow-xl hover:shadow-red-200 hover:-translate-y-1 active:scale-95"
+            className="inline-flex items-center justify-center px-12 py-5 bg-[#011468] text-white font-black rounded-full hover:bg-[#D90414] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 active:scale-95 tracking-wide"
           >
             IR AL CONTACTO COMPLETO
             <svg
-              className="w-6 h-6 ml-3 animate-pulse"
+              className="w-6 h-6 ml-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -153,7 +160,7 @@ const SeccionContacto = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="3"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
           </Link>

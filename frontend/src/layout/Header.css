@@ -1,22 +1,16 @@
-header {
+.header-menu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100; /* para que quede por encima del contenido */
-}
-
-.header-menu {
-  height: 70px;
-  padding: 5px 20px;
-  align-items: center;
+  height: 82px;
+  z-index: 100;
   background-color: #f2f2f2;
-  color: #011468;
-  font-size: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -33,7 +27,7 @@ header {
 
 .header-logo {
   display: flex;
-  height: 80px;
+  height: 43px;
   width: auto;
 }
 
@@ -42,6 +36,8 @@ header {
   justify-content: space-around;
   flex: 1;
   margin: 0 20px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .header-shop {
@@ -89,6 +85,44 @@ header {
   cursor: pointer;
 }
 
+.link {
+  text-decoration: none;
+  color: #011468;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* El estado activo */
+.link.active {
+  color: #007bff; /* Un azul más vibrante para resaltar */
+  font-weight: bold;
+}
+
+/* La línea que aparece debajo */
+.link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+/* La línea crece si está activo o si pasas el ratón */
+.link.active::after,
+.link:hover::after {
+  width: 100%;
+}
+
+/* Evitar que el logo se mueva al hacer hover */
+.header-logo:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
 /* Botón hamburguesa - oculto en escritorio */
 .hamburger-menu {
   display: none;
@@ -107,13 +141,12 @@ header {
 /* Tablets */
 @media (max-width: 1024px) {
   .header-menu {
-    height: auto;
     padding: 10px 15px;
     flex-wrap: wrap;
   }
 
   .header-logo {
-    height: 60px;
+    height: 40px;
   }
 
   .header-nav {
@@ -143,7 +176,8 @@ header {
   }
 
   .header-logo {
-    height: 50px;
+    height: 40px;
+    margin: 10px 0;
     width: auto;
     flex: 0 0 auto;
     align-items: center;
@@ -218,7 +252,8 @@ header {
   }
 
   .header-logo {
-    height: 45px;
+    height: 32px;
+    margin: 10px 0;
     width: auto;
     flex: 0 0 auto;
     align-items: center;

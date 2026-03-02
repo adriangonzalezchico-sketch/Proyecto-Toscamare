@@ -1,7 +1,7 @@
 const UsoCookies = () => {
   return (
     <>
-      <div>
+      <div className="cookies-block">
         <h2> USO DE LAS COOKIES </h2>
 
         <p>

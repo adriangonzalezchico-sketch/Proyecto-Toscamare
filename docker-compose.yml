@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    networks:
+      - toscamare-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - toscamare-network
+
+networks:
+  toscamare-network:
+    driver: bridge

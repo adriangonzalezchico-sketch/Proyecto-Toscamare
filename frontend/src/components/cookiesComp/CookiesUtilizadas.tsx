@@ -1,7 +1,7 @@
 const CookiesUtilizadas = () => {
   return (
     <>
-      <div>
+      <div className="cookies-block">
         <h2> COOKIES UTILIZADAS </h2>
 
         <p> En toscamare.es utilizamos las siguientes cookies: </p>

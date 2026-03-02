@@ -1,7 +1,7 @@
 const Privacidad = () => {
   return (
     <>
-      <div>
+      <div className="legal-block">
         <h2> PRIVACIDAD DE LOS DATOS PERSONALES </h2>
         <p>
           {" "}

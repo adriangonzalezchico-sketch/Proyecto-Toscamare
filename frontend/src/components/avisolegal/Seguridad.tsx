@@ -1,9 +1,9 @@
-import "./Seguridad.css";
+import "./EstilosAvisoLegal.css";
 
 const Seguridad = () => {
   return (
     <>
-      <div className="seguridad">
+      <div className="legal-block">
         <h2> SEGURIDAD DE TU INFORMACIÓN PERSONAL </h2>
         <p>
           {" "}

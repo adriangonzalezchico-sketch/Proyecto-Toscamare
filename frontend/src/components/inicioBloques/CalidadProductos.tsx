@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 
 const CalidadProductos = () => {
   return (
-    <section className="min-h-screen py-16 md:py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    /* Usamos el padding py-24 lg:py-32 para que coincida con la sección de Logística */
+    <section className="py-24 lg:py-32 bg-white overflow-hidden">
+      {/* Cambiamos 'container' por 'max-w-7xl mx-auto px-6'. 
+          Esto hace que el ancho sea EXACTAMENTE igual al de LogísticaCompromiso.
+      */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* --- COLUMNA TEXTO (Izquierda) --- */}
           <div className="order-2 lg:order-1">
-            {/* Badge: Aparece con un pequeño rebote */}
+            {/* Mantenemos tu Badge original */}
             <span
               data-aos="zoom-in"
               className="inline-block py-1 px-3 rounded-full bg-[#E5F6FD] text-[#0460A9] text-xs font-bold uppercase tracking-wider mb-4"
@@ -18,7 +22,7 @@ const CalidadProductos = () => {
             <h2
               data-aos="fade-right"
               data-aos-duration="1000"
-              className="text-3xl md:text-4xl font-bold text-[#011468] mb-6 leading-tight"
+              className="text-3xl md:text-5xl font-bold text-[#011468] mb-6 leading-tight"
             >
               Productos elaborados con la mayor calidad
             </h2>
@@ -33,13 +37,12 @@ const CalidadProductos = () => {
               utilizando materia prima seleccionada.
             </p>
 
-            {/* --- CAJA DESTACADA DEL PREMIO: Aparece con un efecto de "revelado" --- */}
+            {/* Mantenemos tu Caja de Premio original */}
             <div
               data-aos="fade-up"
               data-aos-delay="400"
               className="mb-8 p-6 bg-yellow-50 border-l-4 border-[#FFE184] rounded-r-lg relative overflow-hidden"
             >
-              {/* Icono de medalla: Animación de pulso sutil */}
               <div className="absolute top-4 right-4 text-[#FFE184] opacity-50 animate-pulse">
                 <svg
                   className="w-10 h-10"
@@ -64,7 +67,7 @@ const CalidadProductos = () => {
               </p>
             </div>
 
-            {/* Botón: Aparece desde abajo al final */}
+            {/* Mantenemos tu Botón original */}
             <div data-aos="fade-up" data-aos-delay="600">
               <Link
                 to="/sobre-nosotros"
@@ -90,7 +93,7 @@ const CalidadProductos = () => {
 
           {/* --- COLUMNA IMAGEN (Derecha) --- */}
           <div className="order-1 lg:order-2 relative group">
-            {/* El marco decorativo: Entra con un retraso para dar profundidad */}
+            {/* Mantenemos tu Marco decorativo original */}
             <div
               data-aos="fade-up-left"
               data-aos-delay="300"
@@ -108,7 +111,7 @@ const CalidadProductos = () => {
                 className="w-full h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Sello de Calidad: Animación de zoom-in para que "salte" a la vista */}
+              {/* Mantenemos tu Sello de Calidad original (blanco cuadrado) */}
               <div
                 data-aos="zoom-in"
                 data-aos-delay="800"

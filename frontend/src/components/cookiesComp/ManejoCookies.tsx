@@ -1,6 +1,7 @@
+import "../../components/cookiesComp/EstilosCookies.css";
 const ManejoCookies = () => {
   return (
-    <div>
+    <div className="cookies-block">
       <h2> MANEJO DE COOKIES </h2>
 
       <p>

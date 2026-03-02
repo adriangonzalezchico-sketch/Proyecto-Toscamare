@@ -50,21 +50,33 @@ const CarruselMarcas = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="container mx-auto px-4 mb-12 text-center">
-        {/* Título: Aparece con un fundido desde arriba */}
+    /* py-24 lg:py-32 para igualar el espaciado vertical de LogisticaCompromiso */
+    <section className="py-24 lg:py-32 bg-white border-t border-gray-100 overflow-hidden">
+      {/* Contenedor estandarizado max-w-7xl mx-auto px-6 */}
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+        {/* Badge superior opcional para máxima consistencia */}
+        <div
+          className="flex justify-center items-center gap-3 mb-6"
+          data-aos="zoom-in"
+        >
+          <div className="h-px w-10 bg-blue-700"></div>
+          <span className="text-blue-700 font-bold uppercase tracking-[0.3em] text-xs">
+            Alianzas Estratégicas
+          </span>
+          <div className="h-px w-10 bg-blue-700"></div>
+        </div>
+
         <h2
           data-aos="fade-down"
-          className="text-3xl md:text-4xl font-bold text-[#011468] mb-4"
+          className="text-3xl md:text-5xl font-bold text-[#011468] mb-8 leading-tight"
         >
           Marcas con las que trabajamos
         </h2>
 
-        {/* Descripción: Aparece justo después */}
         <p
           data-aos="fade-up"
           data-aos-delay="200"
-          className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
         >
           Colaboramos con los mejores proveedores de alimentación nacional e
           internacional para garantizar la máxima calidad en tu mesa o negocio.
@@ -77,11 +89,11 @@ const CarruselMarcas = () => {
         data-aos-duration="1500"
         data-aos-delay="400"
         className="relative w-full overflow-hidden"
-        style={{ height: "160px" }}
+        style={{ height: "180px" }}
       >
-        {/* Degradados laterales: Fundido suave para los logos */}
-        <div className="absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
+        {/* Degradados laterales optimizados */}
+        <div className="absolute top-0 left-0 z-10 h-full w-24 md:w-48 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 right-0 z-10 h-full w-24 md:w-48 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
 
         <LogoLoop
           logos={imageLogos}
@@ -96,15 +108,15 @@ const CarruselMarcas = () => {
         />
       </div>
 
-      {/* Cierre: Un pequeño detalle de entrada lateral */}
+      {/* Cierre */}
       <div
-        className="text-center mt-8"
+        className="text-center mt-12"
         data-aos="fade-left"
         data-aos-delay="600"
         data-aos-offset="50"
       >
-        <p className="inline-block text-[#D90414] font-medium italic border-b border-[#D90414]/30 pb-1">
-          Y mucho más…
+        <p className="inline-block text-[#D90414] font-bold uppercase text-xs tracking-[0.2em] border-b-2 border-[#D90414]/20 pb-2">
+          Y mucho más de 2.000 referencias…
         </p>
       </div>
     </section>
