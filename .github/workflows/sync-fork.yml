@@ -8,26 +8,25 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout original repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Push only backend and frontend to fork (safe)
+      - name: Sync fork with upstream
         env:
           FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
         run: |
+          # Clonar el fork
           git clone https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git fork-repo
           cd fork-repo
+          
+          # Configurar git
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-
-          # Copiar las carpetas desde el repo original a la carpeta del fork
-          cp -r ../backend ./backend
-          cp -r ../frontend ./frontend
-
-          # Solo añadir cambios en backend y frontend
-          git add backend frontend
-          git commit -m "Sync backend and frontend from upstream" || echo "No changes"
-          git push https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git main
+          
+          # Añadir upstream y hacer fetch
+          git remote add upstream https://github.com/adriangonzalezchico-sketch/Proyecto-Toscamare.git
+          git fetch upstream main
+          
+          # Hacer merge de upstream/main a main local
+          git merge upstream/main --no-edit
+          
+          # Pushear al fork
+          git push origin main
 
