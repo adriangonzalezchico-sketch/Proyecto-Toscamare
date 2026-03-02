@@ -3,27 +3,6 @@ import { motion, useMotionValue, useTransform } from 'motion/react';
 import type { PanInfo } from 'motion/react';
 // replace icons with your own if needed
 import { FiPhone, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import sedeCentralImg from '../../assets/tiendas/SedeCentral.png';
-import cartayaImg from '../../assets/tiendas/Cartaya.jpg';
-import lepeImg from '../../assets/tiendas/Lepe.jpg';
-import islaCristinaImg from '../../assets/tiendas/IslaCristina.JPG';
-import triguerosImg from '../../assets/tiendas/Trigueros.jpg';
-import sanJuanImg from '../../assets/tiendas/SanJuan.PNG';
-import laPalmaImg from '../../assets/tiendas/LaPalma.jpg';
-import gibraleonImg from '../../assets/tiendas/Gibraleón.png';
-import ayamonte1Img from '../../assets/tiendas/Ayamonte1.png';
-import ayamonte2Img from '../../assets/tiendas/Ayamonte2.jpg';
-import huelva1Img from '../../assets/tiendas/Huelva1.jpg';
-import huelva2Img from '../../assets/tiendas/Huelva2.jpg';
-import huelva3Img from '../../assets/tiendas/Huelva3.jpg';
-import palosImg from '../../assets/tiendas/PalosdelaFrontera.png';
-import almonteImg from '../../assets/tiendas/Almonte.jpg';
-import bonaresImg from '../../assets/tiendas/Bonares.jpg';
-import bollullosImg from '../../assets/tiendas/Bollullos.png';
-import moguerImg from '../../assets/tiendas/Moguer.png';
-import rocianaImg from '../../assets/tiendas/Rociana.png';
-import sanBartolomeImg from '../../assets/tiendas/SanBartolomé.png';
-import valverdeImg from '../../assets/tiendas/Valverde.png';
 import './Carousel.css';
 
 
