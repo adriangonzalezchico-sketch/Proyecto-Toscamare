@@ -1,0 +1,99 @@
+.map {
+    height: 100%;
+    width: 100%;
+    min-height: inherit;
+    display: block;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.map > div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Error State */
+.map-error {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 12px;
+    gap: 1rem;
+}
+
+.error-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.map-error h3 {
+    color: #991b1b;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.map-error p {
+    color: #7f1d1d;
+    margin: 0.5rem 0 0 0;
+    font-size: 0.95rem;
+}
+
+.retry-button {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.retry-button:hover {
+    background-color: #b91c1c;
+}
+
+/* Loading State - Skeleton */
+.map-skeleton {
+    height: 100%;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skeleton-pulse {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #f3f4f6 0%,
+        #e5e7eb 50%,
+        #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Mobile specific */
+@media (max-width: 700px) {
+    .map {
+        min-height: 300px;
+        height: 300px;
+    }
+}
