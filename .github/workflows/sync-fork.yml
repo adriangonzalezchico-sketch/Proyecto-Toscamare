@@ -20,7 +20,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           
-          # A├▒adir upstream y hacer fetch
+          # Añadir upstream y hacer fetch
           git remote add upstream https://github.com/adriangonzalezchico-sketch/Proyecto-Toscamare.git
           git fetch upstream main
           
