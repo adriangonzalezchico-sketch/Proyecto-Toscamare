@@ -7,8 +7,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    content: "contacto@tuempresa.com",
-    description: "Te respondemos en 24h",
+    content: "administracion@cialtoscamare.es",
   },
   {
     icon: Phone,

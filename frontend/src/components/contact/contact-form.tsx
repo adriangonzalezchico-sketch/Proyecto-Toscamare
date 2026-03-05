@@ -42,9 +42,10 @@ export default function ContactForm() {
     }
 
     const data = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
+      fullName: formData.get("fullName"),
+      companyName: formData.get("companyName"),
       email: formData.get("email"),
+      phone: formData.get("phone"),
       subject: formData.get("subject"),
       message: formData.get("message"),
       formLoadTime,
@@ -109,20 +110,25 @@ export default function ContactForm() {
         aria-hidden="true"
       />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="firstName">Nombre</Label>
-          <Input id="firstName" name="firstName" required />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="lastName">Apellido</Label>
-          <Input id="lastName" name="lastName" required />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="fullName">Nombre completo</Label>
+        <Input id="fullName" name="fullName" required />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" required />
+        <Label htmlFor="companyName">Nombre comercial de la entidad</Label>
+        <Input id="companyName" name="companyName" placeholder="En caso de representar una institución o empresa" />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" name="email" type="email" required />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="phone">Teléfono de contacto (opcional)</Label>
+          <Input id="phone" name="phone" type="tel" />
+        </div>
       </div>
 
       <div className="space-y-2">

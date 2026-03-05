@@ -14,8 +14,7 @@ export default function ContactoPage() {
               Contacta con nosotros
             </h1>
             <p className="text-pretty text-lg text-muted-foreground md:text-xl">
-              ¿Tienes alguna pregunta o proyecto en mente? Estamos aquí para ayudarte.
-              Completa el formulario y te responderemos lo antes posible.
+              ¿Necesitas más información o tener un primer contacto con nosotros? Te invitamos a rellenar el formulario y nos pondremos en contacto contigo lo antes posible.
             </p>
           </div>
         </div>
@@ -29,9 +28,9 @@ export default function ContactoPage() {
             <div className="lg:col-span-3">
               <Card className="border-border/50 bg-card/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Envíanos un mensaje</CardTitle>
+                  <CardTitle className="text-2xl">Dinos en que te podemos ayudar</CardTitle>
                   <CardDescription>
-                    Completa el formulario y te contactaremos en menos de 24 horas.
+                    Completa el formulario y contactaremos contigo con la mayor brevedad posible.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -47,7 +46,7 @@ export default function ContactoPage() {
                   Información de contacto
                 </h2>
                 <p className="text-muted-foreground">
-                  También puedes contactarnos directamente a través de estos canales.
+                  Puedes contactar con nosotros directamente a través de estos canales.
                 </p>
               </div>
               <ContactInfo />

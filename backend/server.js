@@ -50,16 +50,16 @@ app.post('/api/contact', async (req, res) => {
       });
     }
 
-    const { firstName, lastName, email, subject, message } = req.body;
+    const { fullName, companyName, email, phone, subject, message } = req.body;
 
-    if (!firstName || !lastName || !email || !subject || !message) {
+    if (!fullName || !email || !subject || !message) {
       return res.status(400).json({
         success: false,
-        message: 'Todos los campos son requeridos'
+        message: 'Todos los campos obligatorios son requeridos'
       });
     }
 
-    const fromName = `${firstName} ${lastName}`;
+    const fromName = fullName;
 
     // Enviar con Mailgun
     const data = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
@@ -158,12 +158,24 @@ app.post('/api/contact', async (req, res) => {
                 <div class="label">👤 Nombre Completo</div>
                 <div class="value">${fromName}</div>
               </div>
-              
+              ${companyName ? `
+              <div class="field">
+                <div class="label">🏢 Entidad / Empresa</div>
+                <div class="value">${companyName}</div>
+              </div>
+              ` : ''}
+
               <div class="field">
                 <div class="label">📧 Email de Contacto</div>
                 <div class="value"><a href="mailto:${email}">${email}</a></div>
               </div>
-              
+              ${phone ? `
+              <div class="field">
+                <div class="label">📞 Teléfono</div>
+                <div class="value">${phone}</div>
+              </div>
+              ` : ''}
+
               <div class="field">
                 <div class="label">📝 Asunto</div>
                 <div class="value">${subject}</div>
@@ -176,7 +188,7 @@ app.post('/api/contact', async (req, res) => {
               
               <center>
                 <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject)}" class="reply-button">
-                  Responder a ${firstName}
+                  Responder a ${fullName}
                 </a>
               </center>
               
@@ -194,8 +206,8 @@ app.post('/api/contact', async (req, res) => {
 NUEVO MENSAJE DE CONTACTO - TOSCAMARE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👤 Nombre: ${fromName}
-📧 Email: ${email}
+👤 Nombre: ${fromName}${companyName ? `\n🏢 Entidad: ${companyName}` : ''}
+📧 Email: ${email}${phone ? `\n📞 Teléfono: ${phone}` : ''}
 📝 Asunto: ${subject}
 
 💬 Mensaje:
