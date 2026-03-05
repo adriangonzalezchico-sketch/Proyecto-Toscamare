@@ -25,11 +25,7 @@ export default function ContactoPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
             {/* Contact Form */}
-<<<<<<< HEAD
-            <div className="lg:col-span-3" data-aos="fade-right" data-aos-delay="200">
-=======
             <div>
->>>>>>> d9f6f05e4334855aa2602431c06f93f6932c3510
               <Card className="border-border/50 bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="text-2xl">Dinos en que te podemos ayudar</CardTitle>
@@ -44,11 +40,7 @@ export default function ContactoPage() {
             </div>
 
             {/* Contact Info */}
-<<<<<<< HEAD
-            <div className="space-y-8 lg:col-span-2" data-aos="fade-left" data-aos-delay="400">
-=======
             <div className="space-y-8">
->>>>>>> d9f6f05e4334855aa2602431c06f93f6932c3510
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground">
                     Información de contacto
