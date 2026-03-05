@@ -1,3 +1,5 @@
+import imgMojama from "../../assets/fotos_sobre_nosotros/foto mojama temporal (2).png";
+
 const LogisticaCompromiso = () => {
   return (
     <section className="py-24 lg:py-32 bg-white">
@@ -86,7 +88,7 @@ const LogisticaCompromiso = () => {
                 </span>
               </div>
               <img
-                src="/src/assets/fotos_sobre_nosotros/foto mojama temporal (2).png"
+                src={imgMojama}
                 alt="Calidad reconocida Mojama Toscamare"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover border-white border-8"
               />

@@ -1,3 +1,6 @@
+import imgAlmacen from "../../assets/fotos_sobre_nosotros/sala inicial almacen.png";
+import imgCamion from "../../assets/fotos_sobre_nosotros/camion toscamare.png";
+
 const NuestraEsencia = () => {
   return (
     <section className="py-24 lg:py-32 bg-white">
@@ -53,12 +56,12 @@ const NuestraEsencia = () => {
             <div className="relative group">
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="/src/assets/fotos_sobre_nosotros/sala inicial almacen.png"
+                  src={imgAlmacen}
                   alt="Almacén Toscamare"
                   className="rounded-2xl shadow-xl w-full h-[240px] md:h-[480px] object-cover border-white border-4 md:border-8 -rotate-2 hover:rotate-0 transition-transform duration-500"
                 />
                 <img
-                  src="/src/assets/fotos_sobre_nosotros/camion toscamare.png"
+                  src={imgCamion}
                   alt="Flota Toscamare"
                   className="rounded-2xl shadow-xl w-full h-[240px] md:h-[480px] object-cover border-white border-4 md:border-8 rotate-2 hover:rotate-0 transition-transform duration-500 mt-4 md:mt-10"
                 />

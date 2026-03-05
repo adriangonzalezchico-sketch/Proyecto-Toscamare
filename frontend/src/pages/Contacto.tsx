@@ -9,7 +9,7 @@ export default function ContactoPage() {
       {/* Hero Section */}
       <section className="border-b border-border/50 bg-muted/30">
         <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center" data-aos="fade-up" data-aos-duration="1000">
             <h1 className="mb-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Contacta con nosotros
             </h1>
@@ -43,7 +43,7 @@ export default function ContactoPage() {
             <div className="space-y-8">
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                  Información de contacto
+                    Información de contacto
                 </h2>
                 <p className="text-muted-foreground">
                   Puedes contactar con nosotros directamente a través de estos canales.
@@ -56,7 +56,7 @@ export default function ContactoPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="border-t border-border/50 bg-muted/20">
+      <section className="border-t border-border/50 bg-muted/20" data-aos="fade-up">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="mx-auto max-w-3xl">
             <ContactFaq />

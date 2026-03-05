@@ -1,10 +1,12 @@
+import heroBg from "../../assets/fotos_sobre_nosotros/sede central.png";
+
 const Hero = () => {
   return (
     <section className="relative h-[80vh] flex items-center justify-center min-h-screen">
       {/* Capa de Imagen de Fondo */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/fotos_sobre_nosotros/sede central.png"
+          src={heroBg}
           alt="Sede Central Toscamare"
           className="w-full h-full object-cover"
         />

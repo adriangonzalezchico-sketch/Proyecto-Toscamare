@@ -1,3 +1,5 @@
+import imgSardinas from "../../assets/fotos_sobre_nosotros/sardinas lonja.jpg";
+
 const ReyCasaAtun = () => {
   return (
     <section className="py-24 lg:py-32 bg-gray-50/50">
@@ -45,7 +47,7 @@ const ReyCasaAtun = () => {
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-50 -z-10 rounded-full transition-transform group-hover:scale-110 duration-500"></div>
 
               <img
-                src="/src/assets/fotos_sobre_nosotros/sardinas lonja.jpg"
+                src={imgSardinas}
                 alt="Sardinas de lonja Toscamare"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover border-white border-8"
               />
