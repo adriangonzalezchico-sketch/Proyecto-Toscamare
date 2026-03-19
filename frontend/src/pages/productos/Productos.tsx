@@ -152,8 +152,8 @@ export default function ProductsPage() {
               })
               .filter((p): p is Product => p !== null);
 
-            const shuffledProducts = [...formattedProducts].sort(() => Math.random() - 0.5);
-            setProducts(shuffledProducts);
+            const sortedProducts = [...formattedProducts].sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true }));
+            setProducts(sortedProducts);
             setLoading(false);
             setTimeout(() => AOS.refresh(), 200);
           }

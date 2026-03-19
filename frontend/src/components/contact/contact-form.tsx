@@ -116,8 +116,8 @@ export default function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="companyName">Nombre comercial de la entidad</Label>
-        <Input id="companyName" name="companyName" placeholder="En caso de representar una institución o empresa" />
+        <Label htmlFor="companyName">Nombre comercial (opcional)</Label>
+        <Input id="companyName" name="companyName" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">

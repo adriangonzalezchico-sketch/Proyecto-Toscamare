@@ -56,7 +56,8 @@ const SeccionContacto = () => {
             </div>
             <h3 className="text-2xl font-bold text-[#011468] mb-3">Llámanos</h3>
             <p className="text-gray-400 mb-6 font-medium">
-              Lunes a Viernes, 9h a 18h
+              Lunes - Viernes, 9:00 - 14:00 y 17:00 - 20:30<br/>
+              Sábados, 9:00 - 14:00
             </p>
             <a
               href="tel:+34959000000"
@@ -96,12 +97,20 @@ const SeccionContacto = () => {
             <p className="text-gray-400 mb-6 font-medium">
               Pedidos e información
             </p>
-            <a
-              href="mailto:pedidos@cialtoscamare.es"
-              className="text-lg font-black text-[#011468] hover:text-[#D90414] break-all underline decoration-[#57C3ED] decoration-4 underline-offset-4 transition-colors"
-            >
-              pedidos@cialtoscamare.es
-            </a>
+            <div className="flex flex-col gap-4">
+              <a
+                href="mailto:pedidos@cialtoscamare.es"
+                className="text-lg font-black text-[#011468] hover:text-[#D90414] break-all underline decoration-[#57C3ED] decoration-4 underline-offset-4 transition-colors"
+              >
+                pedidos@cialtoscamare.es
+              </a>
+              <a
+                href="mailto:administracion@cialtoscamare.es"
+                className="text-lg font-black text-[#011468] hover:text-[#D90414] break-all underline decoration-[#57C3ED] decoration-4 underline-offset-4 transition-colors"
+              >
+                administracion@cialtoscamare.es
+              </a>
+            </div>
           </div>
 
           {/* TARJETA 3: Ubicación */}

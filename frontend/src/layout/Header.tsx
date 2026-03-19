@@ -29,13 +29,8 @@ function Header({ links }: HeaderProps) {
     }
   };
 
-  const handleProductsClick = () => {
-    if (window.location.pathname === "/productos") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      navigate(links.productos);
-    }
-  };
+
+
 
   return (
     <header className="header-menu">
@@ -81,6 +76,17 @@ function Header({ links }: HeaderProps) {
                 className={({ isActive }) =>
                   isActive ? "link active" : "link"
                 }
+                to={links.productos}
+                onClick={closeMenu}
+              >
+                Catálogo de productos
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
                 to={links.tiendas}
                 onClick={closeMenu}
               >
@@ -95,7 +101,7 @@ function Header({ links }: HeaderProps) {
                 to={links.contacto}
                 onClick={closeMenu}
               >
-                Ir a página de contacto
+                Contacto
               </NavLink>
             </li>
           </ul>
@@ -103,8 +109,8 @@ function Header({ links }: HeaderProps) {
       </div>
 
       <div className="header-shop">
-        <button className="shop-button" onClick={handleProductsClick}>
-          PRODUCTOS
+        <button className="shop-button">
+          PRÓXIMAMENTE
           <FaShoppingCart />
         </button>
       </div>

@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "¿Ofrecen soporte telefónico?",
     answer:
-      "Sí, nuestro equipo de soporte está disponible de lunes a viernes de 9:00 a 18:00. Fuera de este horario, puedes dejarnos un mensaje y te contactaremos al día siguiente.",
+      "Sí, nuestro equipo de soporte está disponible de lunes a viernes de 9:00 a 14:00 y de 17:00 a 20:30 y los sábados de 9:00 a 14:00. Fuera de este horario, puedes dejarnos un mensaje y te contactaremos al día siguiente.",
   },
   {
     question: "¿Puedo agendar una reunión?",
@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "¿Dónde están ubicados?",
     answer:
-      "Nuestras oficinas están ubicadas en Madrid, España. También trabajamos de forma remota con clientes de toda Latinoamérica y Europa.",
+      "Nuestras oficinas están ubicadas en Cartaya, Huelva. Además, trabajamos con clientes de toda Andalucía.",
   },
 ]
 

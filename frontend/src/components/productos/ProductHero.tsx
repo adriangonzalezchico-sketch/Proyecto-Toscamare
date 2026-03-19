@@ -13,24 +13,40 @@ export const ProductHero = () => {
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.h1
           className="font-bold leading-[1.1] tracking-[1px] text-white
-                     text-[clamp(2rem,5vw,4rem)] mb-4"
+                     text-[clamp(1.8rem,4vw,3.5rem)] mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Sabores del Mar y la Tierra
+          Nuestros productos más destacados
         </motion.h1>
 
         <motion.p
           className="font-normal opacity-90 text-white px-4
-                     text-[clamp(1rem,2.5vw,2rem)] mb-8"
+                     text-[clamp(1rem,1.8vw,1.5rem)] mb-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          Explora nuestra selección premium. Calidad garantizada desde el origen
-          hasta tu cocina.
+          Descubre nuestra gran variedad de productos disponibles. Aun así, hay contamos con muchos más, consúltanos para saber más información.
         </motion.p>
+
+        <motion.div
+           initial={{ opacity: 0, y: -10 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        >
+          <a
+            href="/Listado de productos destacados por grupos.pdf"
+            download="Catalogo_Productos_Toscamare.pdf"
+            className="inline-flex items-center gap-2 bg-[#D90414] hover:bg-[#b00310] text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Ver catálogo en PDF
+          </a>
+        </motion.div>
       </div>
 
       {/* ONDA SVG (Sin sombras ni efectos externos) */}
