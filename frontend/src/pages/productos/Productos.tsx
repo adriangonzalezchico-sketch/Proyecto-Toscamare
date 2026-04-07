@@ -10,6 +10,7 @@ import { ScrollToTopButton } from "../../components/ui/ScrollToTopButton";
 import { ProductModal } from "../../components/productos/ProductModal";
 // Importación masiva de imágenes de categorías
 import ahumadosImg from "../../assets/imagenes_categorias/Ahumados y salazones.webp";
+import carnesImg from "../../assets/imagenes_categorias/Carnes.webp";
 import embutidosImg from "../../assets/imagenes_categorias/Embutidos.webp";
 import encurtidosImg from "../../assets/imagenes_categorias/Encurtidos.webp";
 import frutasImg from "../../assets/imagenes_categorias/Frutas.webp";
@@ -69,6 +70,7 @@ export default function ProductsPage() {
             // Definición de imágenes locales
             const localCategoryImages: Record<string, string> = {
               pescados: pescadosImg,
+              carnes: carnesImg,
               mariscos: mariscosImg,
               precocinados: precocinadosImg,
               verduras: verdurasImg,
@@ -177,18 +179,27 @@ export default function ProductsPage() {
     return products.filter((product) => {
       if (!product.name) return false;
       
-      const normalize = (str: string) => str.toLowerCase().replace(/,/g, "").trim();
+      const normalizeStr = (str: string) => 
+        str.toLowerCase()
+           .normalize("NFD")
+           .replace(/[\u0300-\u036f]/g, "")
+           .replace(/,/g, "")
+           .trim();
       
+      const normalizedProductCat = normalizeStr(product.category || "");
+      const normalizedFilterCat = normalizeStr(category);
+
       const matchesCategory =
         category === "todos" ||
-        normalize(product.category) === normalize(category);
+        normalizedProductCat === normalizedFilterCat;
 
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
+      const matchesSearch = normalizeStr(product.name)
+        .includes(normalizeStr(search));
+        
       return matchesCategory && matchesSearch;
     });
   }, [products, category, search]);
+
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
