@@ -1,23 +1,23 @@
 import nodemailer from 'nodemailer';
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-  tls: {
-    ciphers: 'SSLv3',
-  },
-});
-
 /**
  * Envía el email de contacto a la empresa.
  * @param {{ fullName: string, companyName?: string, email: string, phone?: string, subject: string, message: string }} data
  */
 export async function sendContactEmail({ fullName, companyName, email, phone, subject, message }) {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ionos.es',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
   const info = await transporter.sendMail({
     from: `"Toscamare" <${process.env.EMAIL}>`,
     to: process.env.EMAIL,
@@ -72,47 +72,40 @@ function buildHtml({ fullName, companyName, email, phone, subject, message }) {
           <tr>
             <td style="padding:30px;">
 
-              <!-- Nombre -->
               <div style="margin-bottom:20px; padding:16px; background:#f9fafb; border-radius:8px; border-left:4px solid #667eea;">
                 <div style="font-weight:600; color:#667eea; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Nombre Completo</div>
                 <div style="color:#1f2937; font-size:16px;">${fullName}</div>
               </div>
 
               ${companyName ? `
-              <!-- Empresa -->
               <div style="margin-bottom:20px; padding:16px; background:#f9fafb; border-radius:8px; border-left:4px solid #667eea;">
                 <div style="font-weight:600; color:#667eea; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Entidad / Empresa</div>
                 <div style="color:#1f2937; font-size:16px;">${companyName}</div>
               </div>
               ` : ''}
 
-              <!-- Email -->
               <div style="margin-bottom:20px; padding:16px; background:#f9fafb; border-radius:8px; border-left:4px solid #667eea;">
                 <div style="font-weight:600; color:#667eea; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Email de Contacto</div>
                 <div style="color:#1f2937; font-size:16px;"><a href="mailto:${email}" style="color:#667eea; text-decoration:none;">${email}</a></div>
               </div>
 
               ${phone ? `
-              <!-- Telefono -->
               <div style="margin-bottom:20px; padding:16px; background:#f9fafb; border-radius:8px; border-left:4px solid #667eea;">
                 <div style="font-weight:600; color:#667eea; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Telefono</div>
                 <div style="color:#1f2937; font-size:16px;">${phone}</div>
               </div>
               ` : ''}
 
-              <!-- Asunto -->
               <div style="margin-bottom:20px; padding:16px; background:#f9fafb; border-radius:8px; border-left:4px solid #667eea;">
                 <div style="font-weight:600; color:#667eea; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Asunto</div>
                 <div style="color:#1f2937; font-size:16px;">${subject}</div>
               </div>
 
-              <!-- Mensaje -->
               <div style="margin-bottom:20px; padding:20px; background:#f0f4ff; border-radius:8px; border-left:4px solid #764ba2;">
                 <div style="font-weight:600; color:#764ba2; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Mensaje</div>
                 <div style="color:#1f2937; font-size:16px; white-space:pre-wrap;">${message}</div>
               </div>
 
-              <!-- Boton Responder -->
               <div style="text-align:center; margin:25px 0;">
                 <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject)}" style="display:inline-block; padding:12px 30px; background:#667eea; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:500; font-size:14px;">
                   Responder a ${fullName}
