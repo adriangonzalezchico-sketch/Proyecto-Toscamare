@@ -217,6 +217,46 @@ export default function ProductsPage() {
     filteredProducts.length,
   );
 
+  // --- LÓGICA DE CARRITO / LOCALSTORAGE ---
+  const [selectedProducts, setSelectedProducts] = useState<{name: string, quantity: number}[]>([]);
+
+  // Cargar carrito al iniciar
+  useEffect(() => {
+    const saved = localStorage.getItem("toscamare_pedido_pendiente");
+    if (saved) {
+      try {
+        setSelectedProducts(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error al cargar carrito del localStorage", e);
+      }
+    }
+  }, []);
+
+  // Guardar carrito al cambiar
+  useEffect(() => {
+    if (selectedProducts.length > 0) {
+      localStorage.setItem("toscamare_pedido_pendiente", JSON.stringify(selectedProducts));
+    } else {
+      localStorage.removeItem("toscamare_pedido_pendiente");
+    }
+  }, [selectedProducts]);
+
+  const handleUpdateCart = (productName: string, delta: number) => {
+    setSelectedProducts(prev => {
+      const existing = prev.find(p => p.name === productName);
+      if (existing) {
+        const newQty = existing.quantity + delta;
+        if (newQty <= 0) {
+          return prev.filter(p => p.name !== productName);
+        }
+        return prev.map(p => p.name === productName ? { ...p, quantity: newQty } : p);
+      } else if (delta > 0) {
+        return [...prev, { name: productName, quantity: delta }];
+      }
+      return prev;
+    });
+  };
+
   const handleCategoryChange = (cat: string) => {
     setCategory(cat);
     setCurrentPage(1);
@@ -273,7 +313,12 @@ export default function ProductsPage() {
           </div>
         ) : (
           <>
-            <ProductGrid products={currentItems} onSelect={setSelectedProduct} />
+            <ProductGrid 
+              products={currentItems} 
+              onSelect={setSelectedProduct} 
+              selectedProducts={selectedProducts}
+              onUpdateCart={handleUpdateCart}
+            />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

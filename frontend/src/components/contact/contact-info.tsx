@@ -84,9 +84,15 @@ export default function ContactInfo() {
                             Lunes - Viernes
                           </strong>
                           <br />
-                          {item.title === "Horario"
-                            ? "9:00-14:00, 17:00-20:30"
-                            : "9:00 - 14:00 y 17:00 - 20:30"}
+                          {item.title === "Horario" ? (
+                            <>
+                              9:00-14:00 <br /> 17:00-20:30
+                            </>
+                          ) : (
+                            <>
+                              9:00 - 14:00 <br /> 17:00 - 20:30
+                            </>
+                          )}
                           <br />
                           <strong className="text-foreground">Sábados</strong>
                           <br />

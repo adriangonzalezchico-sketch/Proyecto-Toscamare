@@ -56,7 +56,9 @@ const SeccionContacto = () => {
             </div>
             <h3 className="text-2xl font-bold text-[#011468] mb-3">Llámanos</h3>
             <p className="text-gray-400 mb-6 font-medium">
-              Lunes - Viernes, 9:00 - 14:00 y 17:00 - 20:30<br/>
+              Lunes - Viernes, 9:00 - 14:00 <br />
+              17:00 - 20:30
+              <br />
               Sábados, 9:00 - 14:00
             </p>
             <a
@@ -144,13 +146,13 @@ const SeccionContacto = () => {
               Visítanos
             </h3>
             <p className="text-gray-400 mb-4 font-medium">Oficinas centrales</p>
-            <a 
-              href="https://www.google.com/maps/search/?api=1&query=Sector+Suelo+Sapu+I3+3+21450+Cartaya+Huelva" 
-              target="_blank" 
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Sector+Suelo+Sapu+I3+3+21450+Cartaya+Huelva"
+              target="_blank"
               rel="noopener noreferrer"
               className="block text-lg font-black text-[#011468] hover:text-[#D90414] transition-colors leading-snug"
             >
-              Sector Suelo Sapu I3, 3 <br/>
+              Sector Suelo Sapu I3, 3 <br />
               <span className="text-base font-bold">21450 Cartaya, Huelva</span>
             </a>
           </div>

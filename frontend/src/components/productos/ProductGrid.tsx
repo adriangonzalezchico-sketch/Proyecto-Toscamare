@@ -11,10 +11,12 @@ interface Product {
 
 interface Props {
   products: Product[];
+  selectedProducts: {name: string, quantity: number}[];
+  onUpdateCart: (productName: string, delta: number) => void;
   onSelect: (product: Product) => void;
 }
 
-export const ProductGrid = ({ products, onSelect }: Props) => {
+export const ProductGrid = ({ products, selectedProducts, onUpdateCart, onSelect }: Props) => {
   // Si no hay productos después de filtrar
   if (products.length === 0) {
     return (
@@ -46,14 +48,19 @@ export const ProductGrid = ({ products, onSelect }: Props) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-      {products.map((product, index) => (
-        <ProductCard 
-          key={product.id} 
-          product={product} 
-          onSelect={onSelect} 
-          index={index}
-        />
-      ))}
+      {products.map((product, index) => {
+        const cartItem = selectedProducts.find(p => p.name === product.name);
+        return (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            onSelect={onSelect} 
+            index={index}
+            quantity={cartItem ? cartItem.quantity : 0}
+            onUpdateCart={onUpdateCart}
+          />
+        );
+      })}
     </div>
   );
 };
