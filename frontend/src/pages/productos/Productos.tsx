@@ -10,6 +10,7 @@ import { ScrollToTopButton } from "../../components/ui/ScrollToTopButton";
 import { ProductModal } from "../../components/productos/ProductModal";
 // Importación masiva de imágenes de categorías
 import ahumadosImg from "../../assets/imagenes_categorias/Ahumados y salazones.webp";
+import carnesImg from "../../assets/imagenes_categorias/Carnes.webp";
 import embutidosImg from "../../assets/imagenes_categorias/Embutidos.webp";
 import encurtidosImg from "../../assets/imagenes_categorias/Encurtidos.webp";
 import frutasImg from "../../assets/imagenes_categorias/Frutas.webp";
@@ -69,6 +70,7 @@ export default function ProductsPage() {
             // Definición de imágenes locales
             const localCategoryImages: Record<string, string> = {
               pescados: pescadosImg,
+              carnes: carnesImg,
               mariscos: mariscosImg,
               precocinados: precocinadosImg,
               verduras: verdurasImg,
@@ -177,18 +179,27 @@ export default function ProductsPage() {
     return products.filter((product) => {
       if (!product.name) return false;
       
-      const normalize = (str: string) => str.toLowerCase().replace(/,/g, "").trim();
+      const normalizeStr = (str: string) => 
+        str.toLowerCase()
+           .normalize("NFD")
+           .replace(/[\u0300-\u036f]/g, "")
+           .replace(/,/g, "")
+           .trim();
       
+      const normalizedProductCat = normalizeStr(product.category || "");
+      const normalizedFilterCat = normalizeStr(category);
+
       const matchesCategory =
         category === "todos" ||
-        normalize(product.category) === normalize(category);
+        normalizedProductCat === normalizedFilterCat;
 
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
+      const matchesSearch = normalizeStr(product.name)
+        .includes(normalizeStr(search));
+        
       return matchesCategory && matchesSearch;
     });
   }, [products, category, search]);
+
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -205,6 +216,46 @@ export default function ProductsPage() {
     startIndex + itemsPerPage,
     filteredProducts.length,
   );
+
+  // --- LÓGICA DE CARRITO / LOCALSTORAGE ---
+  const [selectedProducts, setSelectedProducts] = useState<{name: string, quantity: number}[]>([]);
+
+  // Cargar carrito al iniciar
+  useEffect(() => {
+    const saved = localStorage.getItem("toscamare_pedido_pendiente");
+    if (saved) {
+      try {
+        setSelectedProducts(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error al cargar carrito del localStorage", e);
+      }
+    }
+  }, []);
+
+  // Guardar carrito al cambiar
+  useEffect(() => {
+    if (selectedProducts.length > 0) {
+      localStorage.setItem("toscamare_pedido_pendiente", JSON.stringify(selectedProducts));
+    } else {
+      localStorage.removeItem("toscamare_pedido_pendiente");
+    }
+  }, [selectedProducts]);
+
+  const handleUpdateCart = (productName: string, delta: number) => {
+    setSelectedProducts(prev => {
+      const existing = prev.find(p => p.name === productName);
+      if (existing) {
+        const newQty = existing.quantity + delta;
+        if (newQty <= 0) {
+          return prev.filter(p => p.name !== productName);
+        }
+        return prev.map(p => p.name === productName ? { ...p, quantity: newQty } : p);
+      } else if (delta > 0) {
+        return [...prev, { name: productName, quantity: delta }];
+      }
+      return prev;
+    });
+  };
 
   const handleCategoryChange = (cat: string) => {
     setCategory(cat);
@@ -262,7 +313,12 @@ export default function ProductsPage() {
           </div>
         ) : (
           <>
-            <ProductGrid products={currentItems} onSelect={setSelectedProduct} />
+            <ProductGrid 
+              products={currentItems} 
+              onSelect={setSelectedProduct} 
+              selectedProducts={selectedProducts}
+              onUpdateCart={handleUpdateCart}
+            />
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

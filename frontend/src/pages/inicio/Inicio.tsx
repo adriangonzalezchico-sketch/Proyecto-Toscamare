@@ -1,4 +1,4 @@
-import CarruselMarcas from "../../components/inicioBloques/CarruselMarcas";
+
 import Anedilco from "../../components/inicioBloques/Anedilco";
 import RedTiendas from "../../components/inicioBloques/RedTiendas";
 import CalidadProductos from "../../components/inicioBloques/CalidadProductos";
@@ -12,7 +12,7 @@ const Inicio = () => {
       <HeroVideo />
       <ServicioHosteleria />
       <RedTiendas />
-      <CarruselMarcas />
+
       <CalidadProductos />
       <Anedilco />
       <SeccionContacto />

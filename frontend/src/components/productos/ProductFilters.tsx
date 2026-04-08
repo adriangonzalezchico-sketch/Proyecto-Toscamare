@@ -8,6 +8,7 @@ const categories = [
   { id: "todos", name: "Todos los productos" },
   { id: "pescados", name: "Pescados" },
   { id: "mariscos, moluscos y bivalvos", name: "Mariscos, moluscos y bivalvos" },
+  { id: "carnes", name: "Carnes" },
   { id: "precocinados", name: "Precocinados" },
   { id: "verduras", name: "Verduras" },
   { id: "preparados con verduras", name: "Preparados con verduras" },
@@ -28,6 +29,7 @@ const categories = [
   { id: "repostería", name: "Repostería" },
   { id: "frutas", name: "Frutas" },
 ];
+
 
 export const ProductFilters = ({ activeCategory, setCategory }: Props) => {
   return (
