@@ -38,7 +38,7 @@ interface SelectedProduct {
   note?: string;
 }
 
-import { API_URL } from "../../config/api.config";
+const API_URL = "https://proyecto-toscamare.onrender.com";
 
 const UNITS = ["Uds", "Kg", "gr"];
 
@@ -178,21 +178,22 @@ export default function PedidosForm() {
     // Validación de campos básicos
     const emailStr = formData.get("email")?.toString() || "";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     if (!formData.get("fullName")) {
       newFieldErrors.fullName = "El nombre es obligatorio";
     }
-    
+
     if (!emailStr) {
       newFieldErrors.email = "El correo electrónico es obligatorio";
     } else if (!emailRegex.test(emailStr)) {
-      newFieldErrors.email = "Introduce un correo válido (ej: nombre@empresa.com)";
+      newFieldErrors.email =
+        "Introduce un correo válido (ej: nombre@empresa.com)";
     }
-    
+
     if (!formData.get("companyName")) {
       newFieldErrors.companyName = "El nombre comercial es obligatorio";
     }
-    
+
     // El teléfono ahora es opcional
 
     if (selectedProducts.length === 0) {
@@ -200,34 +201,43 @@ export default function PedidosForm() {
     }
 
     if (deliveryMethod === "tienda" && !selectedStore) {
-      newFieldErrors.selectedStore = "Debes seleccionar una tienda para recoger tu pedido";
+      newFieldErrors.selectedStore =
+        "Debes seleccionar una tienda para recoger tu pedido";
     }
 
     if (Object.keys(newFieldErrors).length > 0) {
       setFieldErrors(newFieldErrors);
       setError("Por favor, revisa los campos marcados en rojo.");
       setIsSubmitting(false);
-      
+
       // Hacer scroll al primer error
       const firstErrorField = Object.keys(newFieldErrors)[0];
       const element = document.getElementById(firstErrorField);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (firstErrorField === 'products') {
-        const productSection = document.getElementById('productSearch');
-        productSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else if (firstErrorField === "products") {
+        const productSection = document.getElementById("productSearch");
+        productSection?.scrollIntoView({ behavior: "smooth", block: "center" });
       }
-      
+
       return;
     }
 
     setFieldErrors({});
 
     const timeElapsed = Date.now() - formLoadTime;
-    console.log("Submit attempt:", { timeElapsed, formLoadTime, now: Date.now() });
-    
+    console.log("Submit attempt:", {
+      timeElapsed,
+      formLoadTime,
+      now: Date.now(),
+    });
+
     if (timeElapsed < 1000) {
-      console.warn("Anti-bot triggered: Submission too fast (", timeElapsed, "ms < 1000ms)");
+      console.warn(
+        "Anti-bot triggered: Submission too fast (",
+        timeElapsed,
+        "ms < 1000ms)",
+      );
       setError("Por favor, tómate un momento para completar el formulario");
       setIsSubmitting(false);
       return;
@@ -292,14 +302,14 @@ export default function PedidosForm() {
           ¡Pedido Recibido!
         </h3>
         <p className="max-w-md text-gray-600 text-lg leading-relaxed">
-          Gracias por confiar en <span className="text-[#D90414] font-bold">Toscamare</span>. 
-          Hemos recibido tu solicitud y nuestro equipo se pondrá en contacto contigo muy pronto para confirmar los detalles.
+          Gracias por confiar en{" "}
+          <span className="text-[#D90414] font-bold">Toscamare</span>. Hemos
+          recibido tu solicitud y nuestro equipo se pondrá en contacto contigo
+          muy pronto para confirmar los detalles.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-10 w-full justify-center">
           <Link to="/">
-            <Button
-              className="bg-[#011468] hover:bg-[#0a1e7a] text-white h-14 px-10 rounded-full font-bold shadow-xl shadow-blue-900/10 transition-all hover:-translate-y-1 w-full sm:w-auto"
-            >
+            <Button className="bg-[#011468] hover:bg-[#0a1e7a] text-white h-14 px-10 rounded-full font-bold shadow-xl shadow-blue-900/10 transition-all hover:-translate-y-1 w-full sm:w-auto">
               Volver al inicio
             </Button>
           </Link>
@@ -321,7 +331,7 @@ export default function PedidosForm() {
   return (
     <div className="w-full space-y-12 pb-20">
       {error && (
-        <div 
+        <div
           className="bg-red-50 border-l-4 border-red-500 p-6 rounded-2xl flex items-start gap-4 animate-in slide-in-from-top-4 duration-300 shadow-sm"
           role="alert"
         >
@@ -329,10 +339,12 @@ export default function PedidosForm() {
             <AlertTriangle className="h-6 w-6 text-white" />
           </div>
           <div className="flex-1">
-            <h4 className="text-red-800 font-bold mb-1">Ha ocurrido un error</h4>
+            <h4 className="text-red-800 font-bold mb-1">
+              Ha ocurrido un error
+            </h4>
             <p className="text-red-700 text-sm md:text-base">{error}</p>
           </div>
-          <button 
+          <button
             onClick={() => setError(null)}
             className="text-red-400 hover:text-red-600 transition-colors p-1"
             aria-label="Cerrar error"
@@ -361,8 +373,10 @@ export default function PedidosForm() {
                 id="fullName"
                 name="fullName"
                 placeholder="Juan Pérez"
-                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.fullName ? 'border-red-500 ring-1 ring-red-500' : ''}`}
-                onFocus={() => setFieldErrors(prev => ({ ...prev, fullName: "" }))}
+                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.fullName ? "border-red-500 ring-1 ring-red-500" : ""}`}
+                onFocus={() =>
+                  setFieldErrors((prev) => ({ ...prev, fullName: "" }))
+                }
               />
               {fieldErrors.fullName && (
                 <p className="text-red-500 text-[10px] font-black uppercase tracking-wider mt-1 ml-2 animate-in fade-in slide-in-from-top-1">
@@ -381,8 +395,10 @@ export default function PedidosForm() {
                 id="companyName"
                 name="companyName"
                 placeholder="Mi Negocio SL"
-                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.companyName ? 'border-red-500 ring-1 ring-red-500' : ''}`}
-                onFocus={() => setFieldErrors(prev => ({ ...prev, companyName: "" }))}
+                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.companyName ? "border-red-500 ring-1 ring-red-500" : ""}`}
+                onFocus={() =>
+                  setFieldErrors((prev) => ({ ...prev, companyName: "" }))
+                }
               />
               {fieldErrors.companyName && (
                 <p className="text-red-500 text-[10px] font-black uppercase tracking-wider mt-1 ml-2 animate-in fade-in slide-in-from-top-1">
@@ -402,8 +418,10 @@ export default function PedidosForm() {
                 name="email"
                 type="email"
                 placeholder="empresa@ejemplo.com"
-                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.email ? 'border-red-500 ring-1 ring-red-500' : ''}`}
-                onFocus={() => setFieldErrors(prev => ({ ...prev, email: "" }))}
+                className={`h-14 bg-gray-50 border-gray-100 text-[#011468] placeholder:text-gray-400 focus:bg-white focus:border-[#011468] focus:ring-0 rounded-2xl transition-all shadow-sm ${fieldErrors.email ? "border-red-500 ring-1 ring-red-500" : ""}`}
+                onFocus={() =>
+                  setFieldErrors((prev) => ({ ...prev, email: "" }))
+                }
               />
               {fieldErrors.email && (
                 <p className="text-red-500 text-[10px] font-black uppercase tracking-wider mt-1 ml-2 animate-in fade-in slide-in-from-top-1">
@@ -695,9 +713,9 @@ export default function PedidosForm() {
                 value={selectedStore}
                 onChange={(e) => {
                   setSelectedStore(e.target.value);
-                  setFieldErrors(prev => ({ ...prev, selectedStore: "" }));
+                  setFieldErrors((prev) => ({ ...prev, selectedStore: "" }));
                 }}
-                className={`w-full h-14 bg-gray-50 border border-gray-100 text-[#011468] rounded-2xl px-5 focus:border-[#011468] outline-none font-bold shadow-sm cursor-pointer ${fieldErrors.selectedStore ? 'border-red-500 ring-1 ring-red-500' : ''}`}
+                className={`w-full h-14 bg-gray-50 border border-gray-100 text-[#011468] rounded-2xl px-5 focus:border-[#011468] outline-none font-bold shadow-sm cursor-pointer ${fieldErrors.selectedStore ? "border-red-500 ring-1 ring-red-500" : ""}`}
               >
                 <option value="" disabled>
                   Selecciona una tienda...
@@ -740,7 +758,9 @@ export default function PedidosForm() {
             type="submit"
             disabled={isSubmitting}
             className={`w-full max-w-xl h-20 rounded-[2rem] font-black text-lg tracking-[0.2em] transition-all duration-700 shadow-2xl uppercase flex items-center justify-center gap-4 ${
-              isSubmitting ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-[#011468] text-white hover:bg-[#D90414] hover:scale-[1.05] cursor-pointer"
+              isSubmitting
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-[#011468] text-white hover:bg-[#D90414] hover:scale-[1.05] cursor-pointer"
             }`}
           >
             {isSubmitting ? (

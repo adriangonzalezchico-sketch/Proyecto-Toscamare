@@ -14,8 +14,7 @@ import {
   Building2,
   Send,
 } from "lucide-react";
-
-import { API_URL } from "../../config/api.config";
+const API_URL = "https://proyecto-toscamare.onrender.com";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -95,9 +94,7 @@ export default function ContactForm() {
         <div className="mb-4 rounded-full bg-primary/10 p-4">
           <CheckCircle className="h-12 w-12 text-primary" />
         </div>
-        <h3 className="mb-2 text-2xl font-semibold">
-          Mensaje enviado
-        </h3>
+        <h3 className="mb-2 text-2xl font-semibold">Mensaje enviado</h3>
         <p className="text-muted-foreground">
           Gracias por contactarnos. Te responderemos pronto.
         </p>
