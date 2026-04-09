@@ -19,12 +19,21 @@ app.use(cors({
   origin: function (origin, callback) {
     // permitir peticiones sin origen (como apps móviles o curl)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+    
+    const isAllowed = allowedOrigins.indexOf(origin) !== -1;
+    const isVercel = origin.endsWith('.vercel.app');
+    const isLocal = origin.includes('localhost');
+
+    if (isAllowed || isVercel || isLocal || process.env.NODE_ENV === 'development') {
       callback(null, true);
     } else {
+      console.warn(`[CORS BLOQUEADO] Origen no permitido: ${origin}`);
       callback(new Error('No permitido por CORS'));
     }
-  }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
