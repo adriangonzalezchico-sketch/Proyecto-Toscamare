@@ -11,8 +11,6 @@ import ContactInfo from "@/components/contact/contact-info";
 import ContactFaq from "@/components/contact/contact-faq";
 
 export default function ContactoPage() {
-  const [formType, setFormType] = useState<"pedidos" | "contacto">("pedidos");
-
   return (
     <main className="min-h-screen bg-background pt-16 md:pt-20">
       {/* Hero Section */}
@@ -52,7 +50,7 @@ export default function ContactoPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ContactForm formType={formType} setFormType={setFormType} />
+                  <ContactForm />
                 </CardContent>
               </Card>
             </div>
@@ -72,7 +70,7 @@ export default function ContactoPage() {
                   canales.
                 </p>
               </div>
-              <ContactInfo formType={formType} />
+              <ContactInfo />
             </div>
           </div>
         </div>

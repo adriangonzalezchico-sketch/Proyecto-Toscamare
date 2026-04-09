@@ -42,7 +42,7 @@ function Header({ links }: HeaderProps) {
             setIsBumping(true);
             setTimeout(() => setIsBumping(false), 300);
           }
-        } catch (e) {
+        } catch {
           setCartCount(0);
         }
       } else {
@@ -140,7 +140,7 @@ function Header({ links }: HeaderProps) {
 
       <div className="header-shop">
         <NavLink 
-          to={cartCount > 0 ? `${links.contacto}#pedido-resumen` : links.productos} 
+          to={cartCount > 0 ? "/pedidos" : links.productos} 
           className={`shop-button ${cartCount > 0 ? "has-items" : ""} ${isBumping ? "bump" : ""}`} 
           onClick={closeMenu}
         >

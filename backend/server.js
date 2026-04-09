@@ -44,7 +44,7 @@ function validateSubmission(body, startTime) {
   }
   // Anti-bot: tiempo mínimo
   const timeElapsed = Date.now() - startTime;
-  if (timeElapsed < 3000) {
+  if (timeElapsed < 1000) {
     return { valid: false, error: 'Por favor, tómate un momento para completar el formulario' };
   }
   return { valid: true };
@@ -56,8 +56,12 @@ app.post('/api/contact', async (req, res) => {
   const startTime = req.body.formLoadTime || Date.now();
 
   try {
+    console.log(`[REQ] Incoming ${req.body.formType || 'unknown'} request from ${req.body.email || 'unknown'}`);
+    console.log('[DEBUG] Full Body:', JSON.stringify(req.body, null, 2));
+
     const validation = validateSubmission(req.body, startTime);
     if (!validation.valid) {
+      console.warn(`[VALIDATION FAILED] ${validation.error} | IP: ${req.ip}`);
       return res.status(400).json({ success: false, message: validation.error });
     }
 
@@ -69,6 +73,8 @@ app.post('/api/contact', async (req, res) => {
     const phone = sanitize(req.body.phone);
     const subject = sanitize(req.body.subject);
     const message = sanitize(req.body.message);
+    const deliveryMethod = sanitize(req.body.deliveryMethod);
+    const selectedStore = sanitize(req.body.selectedStore);
 
     if (!fullName || !email || !subject || !message) {
       return res.status(400).json({
@@ -84,8 +90,10 @@ app.post('/api/contact', async (req, res) => {
       email, 
       phone, 
       subject, 
-      message,
-      selectedProducts 
+      message, 
+      selectedProducts,
+      deliveryMethod,
+      selectedStore
     });
 
     console.log(`[OK] Email (${formType}) enviado de: ${email} | MessageId: ${info.messageId}`);

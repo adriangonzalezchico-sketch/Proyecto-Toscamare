@@ -11,6 +11,7 @@ import AvisoLegal from "./pages/avisoLegal/AvisoLegal";
 import Cookies from "./pages/cookies/Cookies";
 import Tiendas from "./pages/tiendas/Tiendas";
 import Contacto from "./pages/Contacto";
+import Pedidos from "./pages/Pedidos";
 import SobreNosotros from "./pages/sobreNosotros/SobreNosotros";
 import Productos from "./pages/productos/Productos";
 import NotFound from "./pages/NotFound";
@@ -69,6 +70,7 @@ function App() {
             <Route path="/tiendas" element={<Tiendas />} />
             <Route path="/sobre-nosotros" element={<SobreNosotros />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/pedidos" element={<Pedidos />} />
             <Route path="/aviso-legal" element={<AvisoLegal />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/productos" element={<Productos />} />

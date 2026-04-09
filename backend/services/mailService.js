@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
  * Envía el email de contacto a la empresa.
  * @param {{ formType: string, fullName: string, companyName?: string, email: string, phone?: string, subject: string, message: string, selectedProducts: Array }} data
  */
-export async function sendContactEmail({ formType, fullName, companyName, email, phone, subject, message, selectedProducts }) {
+export async function sendContactEmail({ formType, fullName, companyName, email, phone, subject, message, selectedProducts, deliveryMethod, selectedStore }) {
   // Seleccionamos credenciales según el tipo de formulario
   const isPedido = formType === 'pedidos';
   const senderEmail = isPedido ? process.env.EMAIL_PEDIDOS : process.env.EMAIL_CONTACTO;
@@ -23,6 +23,7 @@ export async function sendContactEmail({ formType, fullName, companyName, email,
     },
   });
 
+  console.log(`[MAIL] Attempting to send ${formType} email from ${senderEmail} to ${senderEmail}...`);
   const mailSubject = isPedido ? `NUEVO PEDIDO: ${fullName}` : `Nuevo mensaje de contacto: ${subject}`;
 
   const info = await transporter.sendMail({
@@ -30,22 +31,27 @@ export async function sendContactEmail({ formType, fullName, companyName, email,
     to: senderEmail,
     replyTo: email,
     subject: mailSubject,
-    text: buildPlainText({ formType, fullName, companyName, email, phone, subject, message, selectedProducts }),
-    html: buildHtml({ formType, fullName, companyName, email, phone, subject, message, selectedProducts }),
+    text: buildPlainText({ formType, fullName, companyName, email, phone, subject, message, selectedProducts, deliveryMethod, selectedStore }),
+    html: buildHtml({ formType, fullName, companyName, email, phone, subject, message, selectedProducts, deliveryMethod, selectedStore }),
   });
 
+  console.log(`[MAIL SUCCESS] Email sent! MessageId: ${info.messageId}`);
   return info;
 }
 
-function buildPlainText({ formType, fullName, companyName, email, phone, subject, message, selectedProducts }) {
+function buildPlainText({ formType, fullName, companyName, email, phone, subject, message, selectedProducts, deliveryMethod, selectedStore }) {
   const isPedido = formType === 'pedidos';
   let productsLine = '';
   
   if (isPedido && selectedProducts && selectedProducts.length > 0) {
     productsLine = '\nPRODUCTOS SOLICITADOS:\n' + 
-      selectedProducts.map(p => `- ${p.quantity} ${p.unit || 'Uds'} de ${p.name}`).join('\n') + 
+      selectedProducts.map(p => `- ${p.quantity} ${p.unit || 'Uds'} de ${p.name}${p.note ? ` (Nota: ${p.note})` : ''}`).join('\n') + 
       '\n--------------------------------------\n';
   }
+
+  const deliveryInfo = isPedido ? `
+Método de Entrega: ${deliveryMethod === 'domicilio' ? 'Envío a domicilio' : `Recoger en tienda (${selectedStore || 'No especificada'})`}
+` : '';
 
   return `
 ${isPedido ? 'NUEVO PEDIDO RECIBIDO' : 'NUEVO MENSAJE DE CONTACTO'} - TOSCAMARE
@@ -54,7 +60,7 @@ ${isPedido ? 'NUEVO PEDIDO RECIBIDO' : 'NUEVO MENSAJE DE CONTACTO'} - TOSCAMARE
 Nombre: ${fullName}${companyName ? `\nEmpresa: ${companyName}` : ''}
 Email: ${email}${phone ? `\nTelefono: ${phone}` : ''}
 ${isPedido ? '' : `Asunto: ${subject}`}
-${productsLine}
+${deliveryInfo}${productsLine}
 ${isPedido ? 'Comentarios:' : 'Mensaje:'}
 ${message}
 
@@ -63,7 +69,7 @@ Para responder, utiliza: ${email}
   `.trim();
 }
 
-function buildHtml({ formType, fullName, companyName, email, phone, subject, message, selectedProducts }) {
+function buildHtml({ formType, fullName, companyName, email, phone, subject, message, selectedProducts, deliveryMethod, selectedStore }) {
   const isPedido = formType === 'pedidos';
   const accentColor = '#005bb7';
   const title = isPedido ? 'Nuevo Pedido' : 'Consulta de Contacto';
@@ -78,8 +84,11 @@ function buildHtml({ formType, fullName, companyName, email, phone, subject, mes
         <table width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
           ${selectedProducts.map(p => `
             <tr>
-              <td style="padding:10px 0; border-bottom:1px solid #f1f5f9; color:${accentColor}; font-weight:700; width:100px;">${p.quantity} ${p.unit || 'Uds'}</td>
-              <td style="padding:10px 0; border-bottom:1px solid #f1f5f9; color:#334155;">${p.name}</td>
+              <td style="padding:10px 0; border-bottom:1px solid #f1f5f9; color:${accentColor}; font-weight:700; width:100px; vertical-align:top;">${p.quantity} ${p.unit || 'Uds'}</td>
+              <td style="padding:10px 0; border-bottom:1px solid #f1f5f9; color:#334155;">
+                <div style="font-weight:600;">${p.name}</div>
+                ${p.note ? `<div style="font-size:12px; color:#64748b; margin-top:4px;">Nota: ${p.note}</div>` : ''}
+              </td>
             </tr>
           `).join('')}
         </table>
@@ -132,12 +141,19 @@ function buildHtml({ formType, fullName, companyName, email, phone, subject, mes
                 ` : ''}
               </div>
 
-              ${!isPedido ? `
+              ${isPedido ? `
+              <div style="margin-bottom:20px; padding:18px; background:#f0f7ff; border-radius:12px; border:1px solid #d1e5ff;">
+                <div style="font-weight:700; color:${accentColor}; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Método de Entrega</div>
+                <div style="color:#1e293b; font-size:15px; font-weight:600;">
+                  ${deliveryMethod === 'domicilio' ? '🚚 Envío a domicilio' : `🏪 Recoger en tienda: ${selectedStore || 'No especificada'}`}
+                </div>
+              </div>
+              ` : `
               <div style="margin-bottom:20px; padding:18px; background:#fcfcfc; border-radius:12px; border:1px solid #f1f5f9;">
                 <div style="font-weight:700; color:${accentColor}; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Asunto</div>
                 <div style="color:#1e293b; font-size:15px;">${subject}</div>
               </div>
-              ` : ''}
+              `}
 
               ${productsHtml}
 
