@@ -16,30 +16,31 @@ export async function sendContactEmail({
   deliveryMethod,
   selectedStore,
 }) {
-  // Seleccionamos credenciales según el tipo de formulario
+  // Destino final (Ionos)
   const isPedido = formType === "pedidos";
-  const senderEmail = isPedido
+  const destinationEmail = isPedido
     ? process.env.EMAIL_PEDIDOS
     : process.env.EMAIL_CONTACTO;
-  const senderPass = isPedido
-    ? process.env.PASSWORD_PEDIDOS
-    : process.env.PASSWORD_CONTACTO;
+
+  // Cartero (Gmail)
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPass = process.env.GMAIL_PASS;
+
+  if (!gmailUser || !gmailPass) {
+    console.error(`[CRITICAL] Faltan variables GMAIL_USER o GMAIL_PASS`);
+    throw new Error("Falta configuración de Gmail en Render.");
+  }
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ionos.es",
-    port: 587,
-    secure: false,
+    service: 'gmail',
     auth: {
-      user: senderEmail,
-      pass: senderPass,
-    },
-    tls: {
-      rejectUnauthorized: false,
+      user: gmailUser,
+      pass: gmailPass,
     },
   });
 
   console.log(
-    `[MAIL] Attempting to send ${formType} email from ${senderEmail} to ${senderEmail}...`,
+    `[MAIL] Enviando desde Gmail (${gmailUser}) hacia ${destinationEmail}...`
   );
   
   const mailSubject = isPedido
@@ -47,8 +48,8 @@ export async function sendContactEmail({
     : `Nuevo mensaje de contacto: ${subject}`;
 
   const info = await transporter.sendMail({
-    from: `"Toscamare" <${senderEmail}>`,
-    to: senderEmail,
+    from: `"Web Toscamare" <${gmailUser}>`,
+    to: destinationEmail,
     replyTo: email,
     subject: mailSubject,
     text: buildPlainText({
