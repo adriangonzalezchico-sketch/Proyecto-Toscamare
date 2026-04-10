@@ -10,9 +10,23 @@ require __DIR__ . '/PHPMailer/PHPMailer.php';
 require __DIR__ . '/PHPMailer/SMTP.php';
 
 // 1. Configuración de cabeceras para CORS y JSON
-ini_set('display_errors', 0);
-error_reporting(0);
-header('Access-Control-Allow-Origin: *'); // Si quieres, cambialo por tu dominio en producción
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Lista de dominios que tienen permiso para usar esta API
+$allowedOrigins = [
+    'http://localhost:5173',       // Para tus pruebas en local con Vite
+    'http://localhost:4173',       // Para pruebas locales de build
+    'https://www.toscamare.es',    // Tu dominio en producción (Ionos)
+    'https://toscamare.es'         // Tu dominio sin 'www'
+];
+
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
+
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json; charset=utf-8');
@@ -234,7 +248,7 @@ try {
 
     $mail->send();
     echo json_encode(['success' => true, 'message' => 'Mensaje enviado correctamente']);
-} catch (Exception $e) {
+} catch (\Throwable $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => "Error al enviar el correo: {$mail->ErrorInfo}"]);
+    echo json_encode(['success' => false, 'message' => "Error al enviar el correo: {$e->getMessage()}"]);
 }
