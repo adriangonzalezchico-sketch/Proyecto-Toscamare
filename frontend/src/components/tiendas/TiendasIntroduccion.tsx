@@ -71,15 +71,11 @@ function TiendasIntroduccion() {
         <div className="intro-hours">
           <div>
             <span className="intro-day">Lunes - Viernes</span>
-            <span className="intro-time">9:00 - 14:00</span>
-          </div>
-          <div>
-            <span className="intro-day"></span>
-            <span className="intro-time">17:00 - 20:30</span>
+            <span className="intro-time">7:00 - 16:00</span>
           </div>
           <div>
             <span className="intro-day">Sábados</span>
-            <span className="intro-time">9:00 - 14:00</span>
+            <span className="intro-time">7:00 - 14:00</span>
           </div>
         </div>
         <MotionLink 

@@ -78,7 +78,7 @@ Actualmente la empresa opera con **muchos procesos manuales**, lo que genera ine
 
 **Situación actual:**
 
-- Confirmación de entregas mediante firma en papel.
+- Confirmación de entregas mediante firma en papel
 
 **Objetivo:**
 

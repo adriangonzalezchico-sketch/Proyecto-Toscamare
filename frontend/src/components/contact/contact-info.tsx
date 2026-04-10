@@ -24,18 +24,12 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Horario",
-    description: "9:00-14:00, 17:00-20:30 | Sáb: 9:00-14:00",
+    description: "7:00-16:00 | Sáb: 7:00-14:00",
   },
 ];
 
-interface Props {
-  formType: "pedidos" | "contacto";
-}
-
-export default function ContactInfo({ formType }: Props) {
-  const currentEmail = formType === "pedidos" 
-    ? "pedidos@cialtoscamare.es" 
-    : "administracion@cialtoscamare.es";
+export default function ContactInfo() {
+  const currentEmail = "administracion@cialtoscamare.es";
 
   return (
     <div className="space-y-6">
@@ -46,7 +40,7 @@ export default function ContactInfo({ formType }: Props) {
             <Mail className="h-5 w-5 text-primary" />
           </div>
           <div className="space-y-1 min-w-0 flex-1">
-            <p className="text-sm font-medium text-muted-foreground">Email de {formType === "pedidos" ? "pedidos" : "administración"}</p>
+            <p className="text-sm font-medium text-muted-foreground">Email de administración</p>
             <p className="font-semibold text-sm text-foreground">
               <a href={`mailto:${currentEmail}`} className="hover:text-primary transition-colors">
                 {currentEmail}
@@ -96,17 +90,17 @@ export default function ContactInfo({ formType }: Props) {
                           <br />
                           {item.title === "Horario" ? (
                             <>
-                              9:00-14:00 <br /> 17:00-20:30
+                              7:00 - 16:00
                             </>
                           ) : (
                             <>
-                              9:00 - 14:00 <br /> 17:00 - 20:30
+                              7:00 - 16:00
                             </>
                           )}
                           <br />
                           <strong className="text-foreground">Sábados</strong>
                           <br />
-                          9:00 - 14:00
+                          7:00 - 14:00
                         </>
                       ) : (
                         item.description

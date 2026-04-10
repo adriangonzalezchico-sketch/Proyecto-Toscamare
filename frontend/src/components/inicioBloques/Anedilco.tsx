@@ -1,4 +1,4 @@
-import logoToscamare from "../../../public/logoToscamare/logo-simple-sin-fondo.png";
+const logoToscamare = "/logoToscamare/logo-simple-sin-fondo.png";
 import logoAnedilco from "../../assets/alianzas/logo-anedilco.png";
 import { Link } from "react-router-dom";
 
