@@ -1,0 +1,32 @@
+﻿name: Sync Fork on Push
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync fork with upstream
+        env:
+          FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+        run: |
+          # Clonar el fork
+          git clone https://x-access-token:${FORK_SYNC_TOKEN}@github.com/pmorenomarquez/Proyecto-Toscamare.git fork-repo
+          cd fork-repo
+          
+          # Configurar git
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          
+          # Añadir upstream y hacer fetch
+          git remote add upstream https://github.com/adriangonzalezchico-sketch/Proyecto-Toscamare.git
+          git fetch upstream main
+          
+          # Hacer merge de upstream/main a main local
+          git merge upstream/main --no-edit
+          
+          # Pushear al fork
+          git push origin main
+
